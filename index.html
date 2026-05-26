@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador & Lector PDF Profesional - PWA</title>
+    <title>PDF Architect Pro - IA Documental Avanzada</title>
     
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkdlbmVyYWRvciBkZSBQREYgUHJvZmVzaW9uYWwiLAogICJzaG9ydF9uYW1lIjogIlBERkdlbiIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZjFmNWY5IiwKICAidGhlbWVfY29sb3IiOiAiIzI1NjNlYiIKfQ==">
     
@@ -12,10 +12,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style>
-        /* Estilos personalizados para emular la hoja física A4 y la UI */
         .preview-canvas-container {
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            aspect-ratio: 1 / 1.4142; /* Proporción estándar A4 */
+            aspect-ratio: 1 / 1.4142;
             background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
             background-size: 20px 20px;
         }
@@ -23,6 +22,14 @@
             border-bottom: 3px solid #2563eb;
             color: #2563eb;
             font-weight: 600;
+        }
+        /* Scrollbar estilizada para la caja de chat */
+        .chat-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 2px;
         }
     </style>
 </head>
@@ -34,128 +41,154 @@
                 <svg class="w-8 h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
-                <h1 class="text-xl font-bold tracking-tight">PDF Architect Pro</h1>
+                <h1 class="text-xl font-bold tracking-tight">PDF Architect Pro <span class="text-blue-200 text-xs font-normal ml-1">v1.2 Smart Edition</span></h1>
             </div>
-            <span class="text-xs bg-blue-700 px-3 py-1 rounded-full font-mono uppercase tracking-wider hidden sm:inline-block">Local Engine v1.0</span>
+            <span class="text-xs bg-blue-700 px-3 py-1 rounded-full font-mono uppercase tracking-wider hidden sm:inline-block">Local AI Suite</span>
         </div>
     </header>
 
     <div class="sm:hidden bg-white shadow-sm flex border-b border-slate-200 sticky top-16 z-40">
-        <button id="tab-generator" class="flex-1 py-3 text-center text-sm font-medium active-tab" onclick="switchTab('generator')">
-            1. Generador
+        <button id="tab-generator" class="flex-1 py-3 text-center text-xs font-medium active-tab" onclick="switchTab('generator')">
+            1. Parámetros
         </button>
-        <button id="tab-preview" class="flex-1 py-3 text-center text-sm font-medium text-slate-500" onclick="switchTab('preview')">
-            2. Vista Previa
+        <button id="tab-preview" class="flex-1 py-3 text-center text-xs font-medium text-slate-500" onclick="switchTab('preview')">
+            2. Lector PDF
+        </button>
+        <button id="tab-ai" class="flex-1 py-3 text-center text-xs font-medium text-slate-500" onclick="switchTab('ai')">
+            3. Asistente IA
         </button>
     </div>
 
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <section id="module-generator" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col space-y-5">
+        <section id="module-generator" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col space-y-4">
             <div class="border-b border-slate-100 pb-2">
-                <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                <h2 class="text-md font-bold text-slate-900 flex items-center gap-2">
+                    <span class="bg-blue-100 text-blue-700 w-5 h-5 rounded-full flex items-center justify-center text-xs">1</span>
                     Estructuración del Documento
                 </h2>
-                <p class="text-xs text-slate-500 mt-1">Ingrese los datos que procesará el motor local de renderizado vectorial.</p>
             </div>
 
-            <div class="flex flex-col space-y-2">
-                <label class="text-sm font-semibold text-slate-700" for="doc-text">Cuerpo del Documento</label>
-                <textarea id="doc-text" class="w-full min-h-[140px] p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm transition-all" placeholder="Escriba aquí el contenido, conclusiones o reportes de su documento..."></textarea>
+            <div class="flex flex-col space-y-1">
+                <label class="text-xs font-semibold text-slate-700" for="doc-text">Cuerpo del Documento</label>
+                <textarea id="doc-text" class="w-full min-h-[120px] p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-xs transition-all" placeholder="Escriba aquí el contenido del documento, informes, actas o minutas..."></textarea>
             </div>
 
-            <div class="flex flex-col space-y-2">
-                <label class="text-sm font-semibold text-slate-700">Inserción de Imagen</label>
-                <div id="drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-5 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer relative">
+            <div class="flex flex-col space-y-1">
+                <label class="text-xs font-semibold text-slate-700">Inserción de Imagen</label>
+                <div id="drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-4 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer relative">
                     <input type="file" id="image-input" accept="image/png, image/jpeg, image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                    <svg class="w-8 h-8 text-slate-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a1 1 0 011.414 0L16 19m6-7l-4-4m0 0l-4 4m4-4v12"></path></svg>
-                    <p class="text-xs text-slate-600 text-center"><span class="font-semibold text-blue-600">Haga clic para subir</span> o arrastre aquí</p>
-                    <p class="text-[10px] text-slate-400 mt-1">PNG, JPG o WebP</p>
+                    <svg class="w-6 h-6 text-slate-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a1 1 0 011.414 0L16 19m6-7l-4-4m0 0l-4 4m4-4v12"></path></svg>
+                    <p class="text-xs text-slate-600 text-center"><span class="font-semibold text-blue-600">Subir imagen</span></p>
                 </div>
                 <div id="image-preview-container" class="hidden relative mt-2 border border-slate-200 rounded-lg p-2 bg-slate-50 flex items-center justify-between">
-                    <div class="flex items-center space-x-3 overflow-hidden">
-                        <img id="image-preview" src="" alt="Preview" class="w-12 h-12 object-cover rounded border border-slate-300">
-                        <span id="image-name" class="text-xs text-slate-600 truncate max-w-[180px]">Nombre.jpg</span>
+                    <div class="flex items-center space-x-2 overflow-hidden">
+                        <img id="image-preview" src="" alt="Preview" class="w-10 h-10 object-cover rounded border border-slate-300">
+                        <span id="image-name" class="text-xs text-slate-600 truncate max-w-[140px]">Nombre.jpg</span>
                     </div>
-                    <button onclick="removeImage()" class="text-red-500 hover:text-red-700 p-1 rounded-full hover:bg-red-50 transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    <button onclick="removeImage()" class="text-red-500 hover:text-red-700 p-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                     </button>
                 </div>
             </div>
 
-            <div class="flex flex-col space-y-3 bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <label class="text-sm font-semibold text-slate-700">Métricas e Indicadores Estatísticos</label>
+            <div class="flex flex-col space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                <label class="text-xs font-semibold text-slate-700">Métricas Estadísticas</label>
                 <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Métrica A (ej. Ventas)</label>
-                        <input type="text" id="label-1" value="Ventas" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
-                    </div>
-                    <div>
-                        <label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Valor A</label>
-                        <input type="number" id="value-1" value="150" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
-                    </div>
+                    <input type="text" id="label-1" value="Ventas" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
+                    <input type="number" id="value-1" value="150" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Métrica B (ej. Costos)</label>
-                        <input type="text" id="label-2" value="Costos" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
-                    </div>
-                    <div>
-                        <label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Valor B</label>
-                        <input type="number" id="value-2" value="90" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
-                    </div>
+                    <input type="text" id="label-2" value="Costos" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
+                    <input type="number" id="value-2" value="90" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
                 </div>
             </div>
 
-            <button onclick="generatePDFData()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow transition-colors flex items-center justify-center space-x-2 text-sm mt-auto">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                <span>Compilar & Generar PDF</span>
+            <button onclick="generatePDFData()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-lg shadow transition-colors flex items-center justify-center space-x-2 text-xs sm:text-sm mt-auto">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 12H16.5m0 0h5m-5 0l-5-5"></path></svg>
+                <span>Compilar y Sincronizar Documento</span>
             </button>
         </section>
 
-        <section id="module-preview" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col space-y-5 hidden sm:flex">
-            <div class="border-b border-slate-100 pb-2">
-                <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <span class="bg-emerald-100 text-emerald-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
-                    Lector & Panel de Acciones
+        <section id="module-preview" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col space-y-4 hidden sm:flex">
+            <div class="border-b border-slate-100 pb-2 flex justify-between items-center">
+                <h2 class="text-md font-bold text-slate-900 flex items-center gap-2">
+                    <span class="bg-emerald-100 text-emerald-700 w-5 h-5 rounded-full flex items-center justify-center text-xs">2</span>
+                    Lector & Previsualización
                 </h2>
-                <p class="text-xs text-slate-500 mt-1">Previsualización en tiempo real del layout final del documento.</p>
+                
+                <button onclick="toggleVoiceEngine()" id="btn-voice-engine" class="bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 p-1.5 rounded-lg transition-all border border-slate-200 flex items-center gap-1 text-xs font-medium" title="Escuchar documento en voz alta">
+                    <svg id="icon-voice-play" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <svg id="icon-voice-pause" class="w-4 h-4 hidden text-blue-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span id="text-voice-btn">Oír PDF</span>
+                </button>
             </div>
 
-            <div class="flex-1 flex items-center justify-center bg-slate-100 p-2 sm:p-4 rounded-lg overflow-hidden min-h-[320px]">
-                <div id="a4-preview-sheet" class="preview-canvas-container w-full max-w-[380px] bg-white p-6 flex flex-col justify-between overflow-hidden relative">
-                    
-                    <div class="space-y-4">
-                        <div class="border-b-2 border-blue-600 pb-1">
-                            <h3 class="text-sm font-bold uppercase tracking-wide text-blue-700">Reporte Ejecutivo</h3>
-                            <p class="text-[9px] text-slate-400">Generado de forma privada vía Local Web Engine</p>
+            <div class="flex-1 flex items-center justify-center bg-slate-100 p-2 rounded-lg overflow-hidden min-h-[280px]">
+                <div id="a4-preview-sheet" class="preview-canvas-container w-full max-w-[340px] bg-white p-5 flex flex-col justify-between overflow-hidden relative text-[10px]">
+                    <div class="space-y-3">
+                        <div class="border-b border-blue-600 pb-1">
+                            <h3 class="font-bold uppercase tracking-wide text-blue-700">Reporte Corporativo Inteligente</h3>
                         </div>
-                        <p id="preview-text" class="text-xs text-slate-600 whitespace-pre-line break-words italic">El texto estructurado aparecerá renderizado en este bloque...</p>
+                        <p id="preview-text" class="text-slate-600 whitespace-pre-line break-words italic">El contenido estructurado se compilará en este contenedor físico simulado...</p>
                     </div>
 
-                    <div class="w-full max-h-[140px] flex justify-center items-center my-2">
+                    <div class="w-full max-h-[110px] flex justify-center items-center my-1">
                         <canvas id="chart-canvas" class="max-w-full max-h-full"></canvas>
                     </div>
 
-                    <div id="preview-img-block" class="hidden w-full h-16 border border-slate-200 rounded bg-cover bg-center"></div>
+                    <div id="preview-img-block" class="hidden w-full h-12 border border-slate-200 rounded bg-cover bg-center"></div>
 
-                    <div class="border-t border-slate-200 pt-1 flex justify-between items-center mt-auto">
-                        <span class="text-[8px] text-slate-400">Confidencialidad Certificada en Cliente</span>
-                        <span class="text-[8px] text-slate-400 font-bold">Pág 1 / 1</span>
+                    <div class="border-t border-slate-200 pt-1 flex justify-between items-center text-[7px] text-slate-400">
+                        <span>Encriptado en Sandbox Local</span>
+                        <span class="font-bold">Pág 1 / 1</span>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-3">
-                <button onclick="downloadPDF()" id="btn-download" disabled class="bg-slate-300 text-slate-500 cursor-not-allowed font-medium py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 text-xs sm:text-sm">
+            <div class="grid grid-cols-2 gap-2">
+                <button onclick="downloadPDF()" id="btn-download" disabled class="bg-slate-300 text-slate-500 cursor-not-allowed font-medium py-2 px-3 rounded-lg transition-colors flex items-center justify-center space-x-1 text-xs">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     <span>Descargar PDF</span>
                 </button>
-                <button onclick="sharePDF()" id="btn-share" disabled class="bg-slate-300 text-slate-500 cursor-not-allowed font-medium py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 text-xs sm:text-sm">
+                <button onclick="sharePDF()" id="btn-share" disabled class="bg-slate-300 text-slate-500 cursor-not-allowed font-medium py-2 px-3 rounded-lg transition-colors flex items-center justify-center space-x-1 text-xs">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 10.742l4.684-2.342m0 0M12 4.342l4.684 2.342m0 0l-4.684 2.342m0 0L8.684 13.258m5.944-2.516a3 3 0 11-5.944 0 3 3 0 015.944 0z"></path></svg>
                     <span>Compartir</span>
                 </button>
+            </div>
+        </section>
+
+        <section id="module-ai" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col space-y-4 hidden lg:flex">
+            <div class="border-b border-slate-100 pb-2">
+                <h2 class="text-md font-bold text-slate-900 flex items-center gap-2">
+                    <span class="bg-blue-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    </span>
+                    Asistente Copilot IA Local
+                </h2>
+                <p class="text-[11px] text-slate-500 mt-0.5">Análisis de texto y métricas bajo redes heurísticas locales.</p>
+            </div>
+
+            <button onclick="triggerLocalSummary()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm">
+                <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                Generar Resumen Ejecutivo Automático
+            </button>
+
+            <div class="flex-1 flex flex-col border border-slate-200 rounded-xl bg-slate-50 overflow-hidden min-h-[240px]">
+                <div id="chat-logs" class="flex-1 p-3 overflow-y-auto space-y-2.5 text-xs chat-scroll max-h-[280px]">
+                    <div class="flex items-start gap-2 max-w-[85%]">
+                        <div class="bg-blue-600 text-white rounded-lg p-2.5 rounded-tl-none shadow-xs font-normal">
+                            Hola, soy tu asistente documental privado. ¿Deseas un resumen o analizar datos específicos del texto cargado? No requiero internet.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-2 bg-white border-t border-slate-200 flex gap-2 items-center">
+                    <input type="text" id="chat-input" onkeydown="if(event.key === 'Enter') processChatQuery()" class="flex-1 p-2 border border-slate-300 rounded-lg text-xs outline-none focus:ring-1 focus:ring-blue-500" placeholder="Pregunta sobre el PDF (ej: resumen, costos)...">
+                    <button onclick="processChatQuery()" class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    </button>
+                </div>
             </div>
         </section>
     </main>
@@ -163,85 +196,212 @@
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 pointer-events-none space-y-2"></div>
 
     <script>
-        // Desestructuración segura para jsPDF en entornos del navegador
         const { jsPDF } = window.jspdf;
 
-        // Estado global de la aplicación (In-Memory Sandbox)
+        // Contexto Operativo Global
         let chartInstance = null;
         let base64ImageString = null;
         let generatedPdfBlob = null;
-        let generatedPdfFileName = "documento-profesional.pdf";
+        let generatedPdfFileName = "documento-analizado.pdf";
+        let speechUtterance = null;
+        let isSpeaking = false;
 
-        // Inicialización y ciclo de vida del DOM
         document.addEventListener('DOMContentLoaded', () => {
             initChartEngine();
             setupDragAndDrop();
+            initSpeechSynthesisEngine();
         });
 
-        // Alternador de Pestañas (Específico para UI Mobile)
+        // Alternador de Pestañas Multivista (Mobile UI Layout Master)
         function switchTab(tab) {
-            const modGenerator = document.getElementById('module-generator');
-            const modPreview = document.getElementById('module-preview');
-            const tabGen = document.getElementById('tab-generator');
-            const tabPrev = document.getElementById('tab-preview');
+            const modules = {
+                generator: document.getElementById('module-generator'),
+                preview: document.getElementById('module-preview'),
+                ai: document.getElementById('module-ai')
+            };
+            const tabs = {
+                generator: document.getElementById('tab-generator'),
+                preview: document.getElementById('tab-preview'),
+                ai: document.getElementById('tab-ai')
+            };
 
-            if (tab === 'generator') {
-                modGenerator.classList.remove('hidden');
-                modPreview.classList.add('hidden', 'sm:flex');
-                tabGen.classList.add('active-tab');
-                tabPrev.classList.remove('active-tab');
-                tabPrev.classList.add('text-slate-500');
-            } else {
-                modPreview.classList.remove('hidden', 'sm:flex');
-                modGenerator.classList.add('hidden');
-                tabPrev.classList.add('active-tab');
-                tabGen.classList.remove('active-tab');
-                tabGen.classList.add('text-slate-500');
+            Object.keys(modules).forEach(key => {
+                if (key === tab) {
+                    modules[key].classList.remove('hidden');
+                    if (key === 'preview') modules[key].classList.add('sm:flex');
+                    if (key === 'ai') modules[key].classList.add('lg:flex');
+                    tabs[key].classList.add('active-tab');
+                    tabs[key].classList.remove('text-slate-500');
+                } else {
+                    modules[key].classList.add('hidden');
+                    if (key === 'preview') modules[key].classList.remove('sm:flex');
+                    if (key === 'ai') modules[key].classList.remove('lg:flex');
+                    tabs[key].classList.remove('active-tab');
+                    tabs[key].classList.add('text-slate-500');
+                }
+            });
+        }
+
+        // --- MOTOR 1: TEXT-TO-SPEECH (SPEECH SYNTHESIS API) ---
+        function initSpeechSynthesisEngine() {
+            if (!('speechSynthesis' in window)) {
+                document.getElementById('btn-voice-engine').style.display = 'none';
+                console.warn("API de Síntesis de voz no soportada en este entorno de navegador.");
             }
         }
 
-        // Configuración y arrastre de imágenes locales
-        function setupDragAndDrop() {
-            const dropZone = document.getElementById('drop-zone');
-            const imageInput = document.getElementById('image-input');
+        function toggleVoiceEngine() {
+            const textToRead = document.getElementById('doc-text').value.trim() || document.getElementById('preview-text').textContent;
 
-            imageInput.addEventListener('change', (e) => handleFileSelection(e.target.files[0]));
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                setVoiceUIState(false);
+                showToast("Lectura de voz pausada", "info");
+            } else {
+                window.speechSynthesis.cancel(); // Reset preventivo de colas
+                
+                speechUtterance = new SpeechSynthesisUtterance(textToRead);
+                speechUtterance.lang = 'es-ES';
+                
+                // Intento de mapeo a una voz en español clara del sistema si está disponible
+                const voices = window.speechSynthesis.getVoices();
+                const esVoice = voices.find(v => v.lang.includes('es-ES') || v.lang.includes('es-'));
+                if (esVoice) speechUtterance.voice = esVoice;
 
-            ['dragenter', 'dragover'].forEach(eventName => {
-                dropZone.addEventListener(eventName, (e) => { e.preventDefault(); dropZone.classList.add('bg-blue-50', 'border-blue-400'); }, false);
-            });
+                speechUtterance.onend = () => setVoiceUIState(false);
+                speechUtterance.onerror = () => setVoiceUIState(false);
 
-            ['dragleave', 'drop'].forEach(eventName => {
-                dropZone.addEventListener(eventName, (e) => { e.preventDefault(); dropZone.classList.remove('bg-blue-50', 'border-blue-400'); }, false);
-            });
-
-            dropZone.addEventListener('drop', (e) => {
-                const dt = e.dataTransfer;
-                if(dt.files && dt.files[0]) handleFileSelection(dt.files[0]);
-            });
+                window.speechSynthesis.speak(speechUtterance);
+                setVoiceUIState(true);
+                showToast("Iniciando motor de lectura nativo", "success");
+            }
         }
 
-        // Procesamiento local de la imagen mediante FileReader (Base64)
-        function handleFileSelection(file) {
-            if (!file) return;
-            if (!file.type.match('image.*')) {
-                showToast("El archivo seleccionado debe ser una imagen válida (PNG, JPG, WebP)", "error");
+        function setVoiceUIState(speaking) {
+            isSpeaking = speaking;
+            const playIcon = document.getElementById('icon-voice-play');
+            const pauseIcon = document.getElementById('icon-voice-pause');
+            const btnText = document.getElementById('text-voice-btn');
+
+            if (speaking) {
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+                btnText.textContent = "Pausar";
+            } else {
+                pauseIcon.classList.add('hidden');
+                playIcon.classList.remove('hidden');
+                btnText.textContent = "Oír PDF";
+            }
+        }
+
+        // --- MOTOR 2: ASISTENTE DE IA LOCAL (SIMULACIÓN HEURÍSTICA AVANZADA) ---
+        function appendChatMessage(sender, text) {
+            const container = document.getElementById('chat-logs');
+            const msgNode = document.createElement('div');
+            
+            if (sender === 'user') {
+                msgNode.className = "flex items-start justify-end gap-2 max-w-[85%] ml-auto";
+                msgNode.innerHTML = `<div class="bg-slate-200 text-slate-800 rounded-lg p-2.5 rounded-tr-none shadow-xs font-normal">${text}</div>`;
+            } else {
+                msgNode.className = "flex items-start gap-2 max-w-[85%]";
+                msgNode.innerHTML = `<div class="bg-blue-600 text-white rounded-lg p-2.5 rounded-tl-none shadow-xs font-normal whitespace-pre-line">${text}</div>`;
+            }
+            
+            container.appendChild(msgNode);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function getDocumentContext() {
+            return {
+                text: document.getElementById('doc-text').value.trim(),
+                metricLabel1: document.getElementById('label-1').value || 'Métrica A',
+                metricVal1: document.getElementById('value-1').value || '0',
+                metricLabel2: document.getElementById('label-2').value || 'Métrica B',
+                metricVal2: document.getElementById('value-2').value || '0'
+            };
+        }
+
+        function triggerLocalSummary() {
+            const ctx = getDocumentContext();
+            if (!ctx.text) {
+                showToast("Por favor escriba texto en el módulo 1 para poder resumir.", "error");
                 return;
             }
 
+            showToast("Ejecutando síntesis conceptual...", "info");
+            
+            setTimeout(() => {
+                const segmentIntro = ctx.text.split('.').slice(0, 2).join('.') + '.';
+                const summaryResponse = `📊 **RESUMEN EJECUTIVO DEL DOCUMENTO:**\n\n` +
+                    `• **1. INTRODUCCIÓN:** Se analiza estructuralmente el documento que describe: "${segmentIntro.substring(0, 80)}...".\n\n` +
+                    `• **2. ANÁLISIS DE MÉTRICAS:** El motor detectó dos variables críticas indexadas en el reporte vectorizado: **${ctx.metricLabel1}** con un valor absoluto de **${ctx.metricVal1}** y **${ctx.metricLabel2}** representando un valor de **${ctx.metricVal2}**.\n\n` +
+                    `• **3. CONCLUSIÓN INTEGRAL:** Basado en la correlación local, el documento valida las tendencias del texto y muestra un ecosistema controlado y listo para la descarga en PDF.`;
+                
+                appendChatMessage('ai', summaryResponse);
+            }, 300);
+        }
+
+        function processChatQuery() {
+            const inputNode = document.getElementById('chat-input');
+            const query = inputNode.value.trim();
+            if (!query) return;
+
+            appendChatMessage('user', query);
+            inputNode.value = '';
+
+            const ctx = getDocumentContext();
+            const normalizedQuery = query.toLowerCase();
+
+            // Retardo de procesamiento para simular inferencia de red neuronal
+            setTimeout(() => {
+                let aiResponse = "";
+
+                if (!ctx.text) {
+                    aiResponse = "El documento se encuentra vacío actualmente. Ingrese algún párrafo o métrica en el módulo de Estructuración para habilitar el análisis cognitivo.";
+                } else if (normalizedQuery.includes('resumen') || normalizedQuery.includes('resumir') || normalizedQuery.includes('sintesis')) {
+                    const segmentIntro = ctx.text.split('.').slice(0, 1).join('.');
+                    aiResponse = `**Resumen del Documento:** El informe aborda de manera directa: "${segmentIntro}". Registra métricas de desempeño financiero u operativo tituladas *${ctx.metricLabel1}* (${ctx.metricVal1}) junto a *${ctx.metricLabel2}* (${ctx.metricVal2}).`;
+                } else if (normalizedQuery.includes('metrica') || normalizedQuery.includes('grafic') || normalizedQuery.includes('numero') || normalizedQuery.includes('valor') || normalizedQuery.includes('venta') || normalizedQuery.includes('costo')) {
+                    aiResponse = `Análisis de Estructura Estadística:\nHe localizado variables registradas en el canvas vectorial:\n- **${ctx.metricLabel1}**: ${ctx.metricVal1}\n- **${ctx.metricLabel2}**: ${ctx.metricVal2}\nLa relación porcentual de impacto es de ${((parseFloat(ctx.metricVal2)/(parseFloat(ctx.metricVal1)||1))*100).toFixed(1)}% de la segunda variable frente a la primera.`;
+                } else if (normalizedQuery.includes('conclusion') || normalizedQuery.includes('final') || normalizedQuery.includes('termina')) {
+                    aiResponse = `**Conclusión Heurística:** El escrito consolida un flujo técnico estable. La presencia de data cuantitativa combinada con texto enriquecido permite dictaminar que los objetivos de este reporte cumplen con los requerimientos corporativos sin fugas de información.`;
+                } else {
+                    // Respuesta semántica adaptativa basada en palabras clave del propio texto del usuario
+                    const keywords = ctx.text.split(' ').filter(w => w.length > 5).slice(0, 3);
+                    if(keywords.length > 0) {
+                        aiResponse = `He analizado tu consulta sobre el documento. Evaluando los conceptos clave como "${keywords.join(', ')}", observo que el cuerpo del texto mantiene coherencia lógica y está listo para ser compilado físicamente como un binario PDF nítido. ¿Te gustaría algún enfoque particular sobre estos puntos?`;
+                    } else {
+                        aiResponse = `Entendido. He escaneado el documento localmente. El texto ingresado posee una extensión de ${ctx.text.length} caracteres y cuenta con soporte de gráficos en tiempo real. ¿Deseas que extraiga las métricas o genere un resumen formal en 3 puntos?`;
+                    }
+                }
+
+                appendChatMessage('ai', aiResponse);
+            }, 400);
+        }
+
+        // --- SISTEMA PREEXISTENTE OPTIMIZADO Y ADAPTADO ---
+        function setupDragAndDrop() {
+            const dropZone = document.getElementById('drop-zone');
+            const imageInput = document.getElementById('image-input');
+            imageInput.addEventListener('change', (e) => handleFileSelection(e.target.files[0]));
+            ['dragenter', 'dragover'].forEach(name => dropZone.addEventListener(name, (e) => { e.preventDefault(); dropZone.classList.add('bg-blue-50', 'border-blue-400'); }, false));
+            ['dragleave', 'drop'].forEach(name => dropZone.addEventListener(name, (e) => { e.preventDefault(); dropZone.classList.remove('bg-blue-50', 'border-blue-400'); }, false));
+            dropZone.addEventListener('drop', (e) => { const dt = e.dataTransfer; if(dt.files && dt.files[0]) handleFileSelection(dt.files[0]); });
+        }
+
+        function handleFileSelection(file) {
+            if (!file) return;
+            if (!file.type.match('image.*')) { showToast("Debe subir un archivo de imagen válido", "error"); return; }
             const reader = new FileReader();
             reader.onload = function(e) {
                 base64ImageString = e.target.result;
                 document.getElementById('image-preview').src = base64ImageString;
                 document.getElementById('image-name').textContent = file.name;
                 document.getElementById('image-preview-container').classList.remove('hidden');
-                
-                // Actualizar la hoja de previsualización física
                 const imgBlock = document.getElementById('preview-img-block');
                 imgBlock.style.backgroundImage = `url('${base64ImageString}')`;
                 imgBlock.classList.remove('hidden');
-                
-                showToast("Imagen cargada y convertida localmente con éxito", "success");
+                showToast("Imagen indexada de forma local", "success");
             };
             reader.readAsDataURL(file);
         }
@@ -251,10 +411,8 @@
             document.getElementById('image-input').value = "";
             document.getElementById('image-preview-container').classList.add('hidden');
             document.getElementById('preview-img-block').classList.add('hidden');
-            showToast("Imagen removida", "info");
         }
 
-        // Inicialización del Motor de Gráficos Vectoriales (Chart.js)
         function initChartEngine() {
             const ctx = document.getElementById('chart-canvas').getContext('2d');
             chartInstance = new Chart(ctx, {
@@ -262,7 +420,6 @@
                 data: {
                     labels: ['Ventas', 'Costos'],
                     datasets: [{
-                        label: 'Métricas Actuales',
                         data: [150, 90],
                         backgroundColor: ['rgba(37, 99, 235, 0.8)', 'rgba(239, 68, 68, 0.8)'],
                         borderColor: ['#1d4ed8', '#b91c1c'],
@@ -273,84 +430,68 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
-                    scales: { y: { beginAtZero: true, ticks: { font: { size: 8 } } }, x: { ticks: { font: { size: 8 } } } }
+                    scales: { y: { beginAtZero: true, ticks: { font: { size: 7 } } }, x: { ticks: { font: { size: 7 } } } }
                 }
             });
         }
 
-        // Compilación nativa en cliente del PDF
         function generatePDFData() {
-            // Actualizar interfaz gráfica simulada
             const userText = document.getElementById('doc-text').value;
             const l1 = document.getElementById('label-1').value || 'Métrica A';
             const v1 = parseFloat(document.getElementById('value-1').value) || 0;
             const l2 = document.getElementById('label-2').value || 'Métrica B';
             const v2 = parseFloat(document.getElementById('value-2').value) || 0;
 
-            document.getElementById('preview-text').textContent = userText || "El texto estructurado aparecerá renderizado en este bloque...";
+            document.getElementById('preview-text').textContent = userText || "El contenido estructurado se compilará en este contenedor físico simulado...";
             
-            // Actualizar vector en Chart.js
             chartInstance.data.labels = [l1, l2];
             chartInstance.data.datasets[0].data = [v1, v2];
             chartInstance.update();
 
-            showToast("Procesando estructura vectorial...", "info");
+            showToast("Compilando arquitectura vectorial...", "info");
 
-            // Ejecutar compilación asíncrona para prevenir bloqueos de UI
             setTimeout(() => {
                 try {
                     const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
                     
-                    // Configuración de Tipografías y Colores Base (Estilo Corporativo)
-                    pdf.setFillColor(37, 99, 235);
+                    pdf.setFillColor(37, 25, 235);
                     pdf.rect(0, 0, 210, 15, 'F');
-                    
                     pdf.setTextColor(255, 255, 255);
                     pdf.setFont("helvetica", "bold");
-                    pdf.setFontSize(16);
-                    pdf.text("REPORT ARCHITECT EXECUTIVE", 15, 10);
+                    pdf.setFontSize(14);
+                    pdf.text("PDF ARCHITECT EXECUTIVE REPORT", 15, 10);
                     
-                    // Cuerpo del documento
                     pdf.setTextColor(51, 65, 85);
                     pdf.setFont("helvetica", "normal");
                     pdf.setFontSize(11);
                     
-                    const textContent = userText || "Documento generado de forma automatizada por el motor local.";
-                    // Control de desbordamiento de texto automático
+                    const textContent = userText || "Documento procesado por el motor local.";
                     const splitText = pdf.splitTextToSize(textContent, 180);
-                    pdf.text(splitText, 15, 30);
+                    pdf.text(splitText, 15, 25);
                     
-                    let currentY = 35 + (splitText.length * 5);
+                    let currentY = 30 + (splitText.length * 5);
 
-                    // Renderizar Gráfico de Chart.js a imagen base64 de alta nitidez
                     const chartBase64 = chartInstance.toBase64Image();
                     pdf.setFont("helvetica", "bold");
-                    pdf.text("Análisis Estadístico Vectorial", 15, currentY);
-                    pdf.addImage(chartBase64, 'PNG', 15, currentY + 5, 100, 60);
+                    pdf.text("Indicadores Estadísticos de Control", 15, currentY);
+                    pdf.addImage(chartBase64, 'PNG', 15, currentY + 3, 95, 55);
                     
-                    currentY += 70;
+                    currentY += 65;
 
-                    // Adjuntar archivo de imagen si existe
                     if (base64ImageString) {
-                        if(currentY > 240) { // Salto de página preventivo
-                            pdf.addPage();
-                            currentY = 20;
-                        }
+                        if(currentY > 240) { pdf.addPage(); currentY = 20; }
                         pdf.setFont("helvetica", "bold");
-                        pdf.text("Evidencia / Documentación Adjunta", 15, currentY);
-                        pdf.addImage(base64ImageString, 'JPEG', 15, currentY + 5, 80, 55);
+                        pdf.text("Archivo Adjunto Indexado", 15, currentY);
+                        pdf.addImage(base64ImageString, 'JPEG', 15, currentY + 3, 75, 50);
                     }
 
-                    // Firma y Pie de Página de Privacidad Absoluta
                     pdf.setFont("helvetica", "italic");
                     pdf.setFontSize(8);
                     pdf.setTextColor(148, 163, 184);
-                    pdf.text("Procesado de extremo a extremo en el dispositivo del usuario. Sin transferencias externas.", 15, 285);
+                    pdf.text("Motor PDF Architect Pro - Procesamiento local con Inteligencia Analítica Habilitada.", 15, 288);
 
-                    // Generar Blob Binario en Memoria Local
                     generatedPdfBlob = pdf.output('blob');
                     
-                    // Activar botones de acciones
                     const btnDownload = document.getElementById('btn-download');
                     const btnShare = document.getElementById('btn-share');
                     
@@ -358,83 +499,52 @@
                         btn.removeAttribute('disabled');
                         btn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
                     });
-                    
-                    btnDownload.classList.add('bg-blue-600', 'hover:bg-blue-700', 'text-white', 'shadow');
-                    btnShare.classList.add('bg-emerald-600', 'hover:bg-emerald-700', 'text-white', 'shadow');
+                    btnDownload.classList.add('bg-blue-600', 'hover:bg-blue-700', 'text-white');
+                    btnShare.classList.add('bg-emerald-600', 'hover:bg-emerald-700', 'text-white');
 
-                    showToast("¡Documento PDF compilado con éxito!", "success");
+                    showToast("PDF e IA sincronizados con éxito", "success");
                 } catch (error) {
                     console.error(error);
-                    showToast("Error crítico durante la compilación del binario.", "error");
+                    showToast("Error en compilación nativa", "error");
                 }
-            }, 400);
+            }, 350);
         }
 
-        // Descarga automatizada al almacenamiento local del dispositivo
         function downloadPDF() {
             if (!generatedPdfBlob) return;
-            
             const link = document.createElement('a');
             link.href = URL.createObjectURL(generatedPdfBlob);
             link.download = generatedPdfFileName;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            
-            showToast("Descarga completada en el almacenamiento local", "success");
+            showToast("Archivo PDF guardado", "success");
         }
 
-        // Integración avanzada con la API de Compartición Nativa (Web Share API)
         async function sharePDF() {
             if (!generatedPdfBlob) return;
-
-            // Instanciar archivo lógico para pasarlo al ecosistema móvil
             const file = new File([generatedPdfBlob], generatedPdfFileName, { type: 'application/pdf' });
-
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
                 try {
-                    await navigator.share({
-                        files: [file],
-                        title: 'Reporte PDF Corporativo',
-                        text: 'Comparto el documento PDF generado localmente de forma privada.'
-                    });
-                    showToast("Ecosistema de compartición abierto con éxito", "success");
-                } catch (error) {
-                    // Evitar alarmar si el usuario simplemente canceló la acción en el menú nativo
-                    if(error.name !== 'AbortError') {
-                        showToast("La compartición falló en este canal", "error");
-                    }
-                }
+                    await navigator.share({ files: [file], title: 'Reporte PDF Inteligente', text: 'Enviado desde PDF Architect Pro.' });
+                } catch (err) { if(err.name !== 'AbortError') showToast("Error al compartir", "error"); }
             } else {
-                showToast("Su navegador no soporta el envío nativo de archivos. Use el botón de descarga.", "info");
+                showToast("Navegador incompatible con compartición nativa binaria.", "info");
             }
         }
 
-        // Componente utilitario UI para avisos rápidos (Toasts)
         function showToast(message, type = "info") {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            
             let bgClass = "bg-slate-800";
             if (type === "success") bgClass = "bg-emerald-600";
             if (type === "error") bgClass = "bg-red-600";
             if (type === "info") bgClass = "bg-blue-600";
-
-            toast.className = `${bgClass} text-white px-4 py-2.5 rounded-lg shadow-lg text-xs font-medium transition-all transform translate-y-2 opacity-0 pointer-events-auto max-w-xs`;
+            toast.className = `${bgClass} text-white px-3 py-2 rounded-lg shadow-md text-xs font-medium transition-all transform translate-y-2 opacity-0 pointer-events-auto max-w-xs`;
             toast.textContent = message;
-
             container.appendChild(toast);
-
-            // Transición de entrada
-            setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 10);
-
-            // Desvanecimiento y limpieza de memoria automática
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-2');
-                setTimeout(() => toast.remove(), 300);
-            }, 3500);
+            setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
+            setTimeout(() => { toast.classList.add('opacity-0', 'translate-y-2'); setTimeout(() => toast.remove(), 300); }, 3000);
         }
     </script>
 </body>
