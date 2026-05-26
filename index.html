@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Architect Pro - IA Documental Avanzada</title>
+    <title>PDF AI-ON Agencia y Mentoria | Suite Profesional</title>
     
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkdlbmVyYWRvciBkZSBQREYgUHJvZmVzaW9uYWwiLAogICJzaG9ydF9uYW1lIjogIlBERkdlbiIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZjFmNWY5IiwKICAidGhlbWVfY29sb3IiOiAiIzI1NjNlYiIKfQ==">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlBERiBASS1PTiBBZ2VuY2lhIHkgTWVudG9yaWEiLAogICJzaG9ydF9uYW1lIjogIkFJLk9OIFN1aXRlIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMxZTI5M2IiLAogICJ0aGVtZV9jb2xvciI6IiMxZTI5M2IiCn0=">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -13,179 +13,195 @@
 
     <style>
         .preview-canvas-container {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             aspect-ratio: 1 / 1.4142;
-            background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
+            background-image: linear-gradient(rgba(30, 41, 59, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 41, 59, 0.02) 1px, transparent 1px);
+            background-size: 15px 15px;
         }
         .active-tab {
-            border-bottom: 3px solid #2563eb;
-            color: #2563eb;
-            font-weight: 600;
+            border-bottom: 3px solid #1e293b;
+            color: #1e293b;
+            font-weight: 700;
         }
-        /* Scrollbar estilizada para la caja de chat */
         .chat-scroll::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
         .chat-scroll::-webkit-scrollbar-thumb {
             background-color: #cbd5e1;
-            border-radius: 2px;
+            border-radius: 3px;
         }
     </style>
 </head>
-<body class="bg-slate-100 font-sans text-slate-800 min-h-screen flex flex-col">
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col justify-between">
 
-    <header class="bg-blue-600 text-white shadow-md p-4 sticky top-0 z-50">
+    <header class="bg-[#1e293b] text-[#f8fafc] shadow-lg p-4 sticky top-0 z-50 border-b border-slate-700">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <svg class="w-8 h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                <svg class="w-7 h-7 text-slate-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                 </svg>
-                <h1 class="text-xl font-bold tracking-tight">PDF Architect Pro <span class="text-blue-200 text-xs font-normal ml-1">v1.2 Smart Edition</span></h1>
+                <h1 class="text-lg font-bold tracking-wide">PDF AI-ON Agencia y Mentoria <span class="text-slate-400 font-light text-xs sm:text-sm block sm:inline sm:ml-2">| Suite Profesional</span></h1>
             </div>
-            <span class="text-xs bg-blue-700 px-3 py-1 rounded-full font-mono uppercase tracking-wider hidden sm:inline-block">Local AI Suite</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-3 py-1 rounded border border-slate-700 font-mono hidden md:inline-block">PREMIUM SANDBOX</span>
         </div>
     </header>
 
-    <div class="sm:hidden bg-white shadow-sm flex border-b border-slate-200 sticky top-16 z-40">
-        <button id="tab-generator" class="flex-1 py-3 text-center text-xs font-medium active-tab" onclick="switchTab('generator')">
-            1. Parámetros
-        </button>
-        <button id="tab-preview" class="flex-1 py-3 text-center text-xs font-medium text-slate-500" onclick="switchTab('preview')">
-            2. Lector PDF
-        </button>
-        <button id="tab-ai" class="flex-1 py-3 text-center text-xs font-medium text-slate-500" onclick="switchTab('ai')">
-            3. Asistente IA
-        </button>
+    <div class="sm:hidden bg-white shadow-sm flex border-b border-slate-200 sticky top-[69px] z-40">
+        <button id="tab-generator" class="flex-1 py-3 text-center text-xs font-semibold active-tab" onclick="switchTab('generator')">1. Configurar</button>
+        <button id="tab-preview" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500" onclick="switchTab('preview')">2. Previsualizar</button>
+        <button id="tab-ai" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500" onclick="switchTab('ai')">3. Mentor AI-ON</button>
     </div>
 
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <section id="module-generator" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col space-y-4">
-            <div class="border-b border-slate-100 pb-2">
-                <h2 class="text-md font-bold text-slate-900 flex items-center gap-2">
-                    <span class="bg-blue-100 text-blue-700 w-5 h-5 rounded-full flex items-center justify-center text-xs">1</span>
-                    Estructuración del Documento
+        <section id="module-generator" class="bg-white rounded-xl p-5 shadow-md border border-slate-200 flex flex-col space-y-4">
+            <div class="border-b border-slate-100 pb-2 flex justify-between items-center">
+                <h2 class="text-sm font-bold text-[#1e293b] uppercase tracking-wide flex items-center gap-2">
+                    <span class="bg-slate-100 p-1 rounded text-[#1e293b]">01</span> Entrada de Datos
                 </h2>
+                <select id="doc-type-selector" onchange="toggleDocumentFormMode()" class="text-xs font-semibold bg-slate-100 border border-slate-300 rounded p-1 text-slate-700 outline-none focus:ring-1 focus:ring-slate-500">
+                    <option value="general">Documento General</option>
+                    <option value="cv">Currículum Vitae (CV)</option>
+                </select>
             </div>
 
-            <div class="flex flex-col space-y-1">
-                <label class="text-xs font-semibold text-slate-700" for="doc-text">Cuerpo del Documento</label>
-                <textarea id="doc-text" class="w-full min-h-[120px] p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-xs transition-all" placeholder="Escriba aquí el contenido del documento, informes, actas o minutas..."></textarea>
-            </div>
-
-            <div class="flex flex-col space-y-1">
-                <label class="text-xs font-semibold text-slate-700">Inserción de Imagen</label>
-                <div id="drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-4 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer relative">
-                    <input type="file" id="image-input" accept="image/png, image/jpeg, image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                    <svg class="w-6 h-6 text-slate-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a1 1 0 011.414 0L16 19m6-7l-4-4m0 0l-4 4m4-4v12"></path></svg>
-                    <p class="text-xs text-slate-600 text-center"><span class="font-semibold text-blue-600">Subir imagen</span></p>
+            <div id="form-general-wrapper" class="flex flex-col space-y-3 flex-1">
+                <div class="flex flex-col space-y-1">
+                    <label class="text-xs font-bold text-slate-600" for="doc-text">Cuerpo de la Propuesta / Estrategia</label>
+                    <textarea id="doc-text" class="w-full min-h-[160px] p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-700 outline-none text-xs transition-all bg-slate-50" placeholder="Redacte los procesos, objetivos, auditorías o propuestas comerciales de la agencia..."></textarea>
                 </div>
-                <div id="image-preview-container" class="hidden relative mt-2 border border-slate-200 rounded-lg p-2 bg-slate-50 flex items-center justify-between">
-                    <div class="flex items-center space-x-2 overflow-hidden">
-                        <img id="image-preview" src="" alt="Preview" class="w-10 h-10 object-cover rounded border border-slate-300">
-                        <span id="image-name" class="text-xs text-slate-600 truncate max-w-[140px]">Nombre.jpg</span>
+            </div>
+
+            <div id="form-cv-wrapper" class="hidden flex flex-col space-y-3 flex-1 overflow-y-auto pr-1">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase">Nombre Completo</label>
+                        <input type="text" id="cv-name" value="Lic. Carlos Mendoza" class="w-full p-2 border border-slate-300 rounded text-xs bg-slate-50">
                     </div>
-                    <button onclick="removeImage()" class="text-red-500 hover:text-red-700 p-1">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                    </button>
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase">Contacto / Email</label>
+                        <input type="text" id="cv-contact" value="contacto@tuagencia.com" class="w-full p-2 border border-slate-300 rounded text-xs bg-slate-50">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold text-slate-500 uppercase">Experiencia Laboral Destacada</label>
+                    <textarea id="cv-experience" class="w-full h-16 p-2 border border-slate-300 rounded text-xs bg-slate-50" placeholder="Ej: Director de Operaciones en AI Agencia (2023 - Presente). Lideré la automatización de procesos..."></textarea>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold text-slate-500 uppercase">Formación / Certificaciones</label>
+                    <textarea id="cv-education" class="w-full h-12 p-2 border border-slate-300 rounded text-xs bg-slate-50" placeholder="Ej: Máster en Dirección Estratégica e IA Aplicada - Universidad Tecnológica."></textarea>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold text-slate-500 uppercase">Habilidades y Competencias</label>
+                    <input type="text" id="cv-skills" value="Gestión de Procesos, Consultoría B2B, Automatización, Liderazgo de Equipos" class="w-full p-2 border border-slate-300 rounded text-xs bg-slate-50">
                 </div>
             </div>
 
-            <div class="flex flex-col space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-200">
-                <label class="text-xs font-semibold text-slate-700">Métricas Estadísticas</label>
-                <div class="grid grid-cols-2 gap-2">
-                    <input type="text" id="label-1" value="Ventas" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
-                    <input type="number" id="value-1" value="150" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
+            <div class="flex flex-col space-y-2">
+                <div id="drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-3 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer relative">
+                    <input type="file" id="image-input" accept="image/png, image/jpeg, image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                    <p class="text-xs text-slate-600 font-medium"><span class="text-[#1e293b] underline">Subir Imagen Corporativa / Foto CV</span></p>
                 </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <input type="text" id="label-2" value="Costos" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
-                    <input type="number" id="value-2" value="90" class="w-full p-2 border border-slate-300 rounded text-xs bg-white">
+                <div id="image-preview-container" class="hidden border border-slate-200 rounded-lg p-1.5 bg-slate-50 flex items-center justify-between">
+                    <img id="image-preview" src="" alt="Preview" class="w-8 h-8 object-cover rounded border">
+                    <span id="image-name" class="text-[10px] text-slate-500 truncate max-w-[150px]">Foto.jpg</span>
+                    <button onclick="removeImage()" class="text-red-500 p-1 text-xs font-bold">✕</button>
                 </div>
             </div>
 
-            <button onclick="generatePDFData()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-lg shadow transition-colors flex items-center justify-center space-x-2 text-xs sm:text-sm mt-auto">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 12H16.5m0 0h5m-5 0l-5-5"></path></svg>
-                <span>Compilar y Sincronizar Documento</span>
+            <div class="flex flex-col space-y-2 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" id="label-1" value="Eficiencia" class="w-full p-1.5 border border-slate-300 rounded text-xs bg-white">
+                    <input type="number" id="value-1" value="95" class="w-full p-1.5 border border-slate-300 rounded text-xs bg-white">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" id="label-2" value="Costos Operativos" class="w-full p-1.5 border border-slate-300 rounded text-xs bg-white">
+                    <input type="number" id="value-2" value="40" class="w-full p-1.5 border border-slate-300 rounded text-xs bg-white">
+                </div>
+            </div>
+
+            <button onclick="compileExecutiveDocument()" class="w-full bg-[#1e293b] hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-lg shadow-md transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                <span>Compilar Documento Nítido</span>
             </button>
         </section>
 
-        <section id="module-preview" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col space-y-4 hidden sm:flex">
+        <section id="module-preview" class="bg-white rounded-xl p-5 shadow-md border border-slate-200 flex flex-col space-y-4 hidden sm:flex">
             <div class="border-b border-slate-100 pb-2 flex justify-between items-center">
-                <h2 class="text-md font-bold text-slate-900 flex items-center gap-2">
-                    <span class="bg-emerald-100 text-emerald-700 w-5 h-5 rounded-full flex items-center justify-center text-xs">2</span>
-                    Lector & Previsualización
+                <h2 class="text-sm font-bold text-[#1e293b] uppercase tracking-wide flex items-center gap-2">
+                    <span class="bg-slate-100 p-1 rounded text-[#1e293b]">02</span> Layout Ejecutivo
                 </h2>
-                
-                <button onclick="toggleVoiceEngine()" id="btn-voice-engine" class="bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 p-1.5 rounded-lg transition-all border border-slate-200 flex items-center gap-1 text-xs font-medium" title="Escuchar documento en voz alta">
-                    <svg id="icon-voice-play" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <svg id="icon-voice-pause" class="w-4 h-4 hidden text-blue-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span id="text-voice-btn">Oír PDF</span>
+                <button onclick="executeTextToSpeech()" id="btn-voice" class="bg-slate-50 hover:bg-slate-100 text-slate-700 p-1.5 rounded-lg border border-slate-300 flex items-center gap-1.5 text-xs font-bold transition-all">
+                    <span id="voice-icon" class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                    <span id="voice-text">Oír PDF</span>
                 </button>
             </div>
 
-            <div class="flex-1 flex items-center justify-center bg-slate-100 p-2 rounded-lg overflow-hidden min-h-[280px]">
-                <div id="a4-preview-sheet" class="preview-canvas-container w-full max-w-[340px] bg-white p-5 flex flex-col justify-between overflow-hidden relative text-[10px]">
-                    <div class="space-y-3">
-                        <div class="border-b border-blue-600 pb-1">
-                            <h3 class="font-bold uppercase tracking-wide text-blue-700">Reporte Corporativo Inteligente</h3>
+            <div class="flex-1 flex items-center justify-center bg-slate-100 p-2 rounded-xl overflow-hidden min-h-[300px]">
+                <div id="a4-sheet" class="preview-canvas-container w-full max-w-[320px] bg-white p-5 flex flex-col justify-between overflow-hidden relative text-[9px] text-slate-800">
+                    
+                    <div id="sheet-content-area" class="space-y-3">
+                        <div class="border-b border-slate-900 pb-1.5 flex justify-between items-end">
+                            <div>
+                                <h3 id="sheet-header-title" class="font-black text-[#1e293b] uppercase tracking-wide text-[11px]">DOCUMENTO DE ESTRATEGIA</h3>
+                                <p id="sheet-header-sub" class="text-[7px] text-slate-400 font-mono">AI-ON AGENCIA & MENTORIA SUITE</p>
+                            </div>
+                            <div id="sheet-profile-pic" class="w-9 h-9 border border-slate-300 bg-slate-100 hidden bg-cover bg-center rounded"></div>
                         </div>
-                        <p id="preview-text" class="text-slate-600 whitespace-pre-line break-words italic">El contenido estructurado se compilará en este contenedor físico simulado...</p>
+                        
+                        <div id="sheet-dynamic-body" class="whitespace-pre-line break-words text-slate-700 leading-normal">
+                            El documento o estructura curricular aparecerá compilado de manera vectorial en este bloque...
+                        </div>
                     </div>
 
-                    <div class="w-full max-h-[110px] flex justify-center items-center my-1">
+                    <div id="sheet-chart-container" class="w-full max-h-[100px] flex justify-center items-center my-1">
                         <canvas id="chart-canvas" class="max-w-full max-h-full"></canvas>
                     </div>
 
-                    <div id="preview-img-block" class="hidden w-full h-12 border border-slate-200 rounded bg-cover bg-center"></div>
-
                     <div class="border-t border-slate-200 pt-1 flex justify-between items-center text-[7px] text-slate-400">
-                        <span>Encriptado en Sandbox Local</span>
+                        <span>Documentación Confidencial Autorizada</span>
                         <span class="font-bold">Pág 1 / 1</span>
                     </div>
                 </div>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
-                <button onclick="downloadPDF()" id="btn-download" disabled class="bg-slate-300 text-slate-500 cursor-not-allowed font-medium py-2 px-3 rounded-lg transition-colors flex items-center justify-center space-x-1 text-xs">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                <button onclick="downloadExecutivePDF()" id="btn-download" disabled class="bg-slate-200 text-slate-400 cursor-not-allowed font-bold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1 shadow">
                     <span>Descargar PDF</span>
                 </button>
-                <button onclick="sharePDF()" id="btn-share" disabled class="bg-slate-300 text-slate-500 cursor-not-allowed font-medium py-2 px-3 rounded-lg transition-colors flex items-center justify-center space-x-1 text-xs">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 10.742l4.684-2.342m0 0M12 4.342l4.684 2.342m0 0l-4.684 2.342m0 0L8.684 13.258m5.944-2.516a3 3 0 11-5.944 0 3 3 0 015.944 0z"></path></svg>
+                <button onclick="shareExecutivePDF()" id="btn-share" disabled class="bg-slate-200 text-slate-400 cursor-not-allowed font-bold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1 shadow">
                     <span>Compartir</span>
                 </button>
             </div>
         </section>
 
-        <section id="module-ai" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col space-y-4 hidden lg:flex">
+        <section id="module-ai" class="bg-white rounded-xl p-5 shadow-md border border-slate-200 flex flex-col space-y-4 hidden lg:flex">
             <div class="border-b border-slate-100 pb-2">
-                <h2 class="text-md font-bold text-slate-900 flex items-center gap-2">
-                    <span class="bg-blue-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                    </span>
-                    Asistente Copilot IA Local
+                <h2 class="text-sm font-bold text-[#1e293b] uppercase tracking-wide flex items-center gap-2">
+                    <span class="bg-[#1e293b] text-white p-1 rounded">03</span> Consultor & Mentor AI-ON
                 </h2>
-                <p class="text-[11px] text-slate-500 mt-0.5">Análisis de texto y métricas bajo redes heurísticas locales.</p>
             </div>
 
-            <button onclick="triggerLocalSummary()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm">
-                <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                Generar Resumen Ejecutivo Automático
-            </button>
+            <div class="grid grid-cols-1 gap-2">
+                <button onclick="executeBusinessDiagnosis()" class="w-full bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm">
+                    💼 Consultoría y Diagnóstico AI-ON
+                </button>
+                <button onclick="executeProfileMentorship()" id="btn-mentor-cv" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm">
+                    🚀 Mentor de Perfil Profesional (CV)
+                </button>
+            </div>
 
-            <div class="flex-1 flex flex-col border border-slate-200 rounded-xl bg-slate-50 overflow-hidden min-h-[240px]">
-                <div id="chat-logs" class="flex-1 p-3 overflow-y-auto space-y-2.5 text-xs chat-scroll max-h-[280px]">
-                    <div class="flex items-start gap-2 max-w-[85%]">
-                        <div class="bg-blue-600 text-white rounded-lg p-2.5 rounded-tl-none shadow-xs font-normal">
-                            Hola, soy tu asistente documental privado. ¿Deseas un resumen o analizar datos específicos del texto cargado? No requiero internet.
+            <div class="flex-1 flex flex-col border border-slate-200 rounded-xl bg-slate-50 overflow-hidden min-h-[220px]">
+                <div id="chat-logs" class="flex-1 p-3 overflow-y-auto space-y-2.5 text-xs chat-scroll max-h-[260px]">
+                    <div class="flex items-start gap-2 max-w-[90%]">
+                        <div class="bg-[#1e293b] text-white rounded-lg p-2.5 rounded-tl-none shadow-sm leading-relaxed">
+                            Bienvenido a **AI-ON Agencia y Mentoria**. Presiona cualquiera de nuestros asesores superiores o realiza una pregunta libre sobre la estrategia o currículum cargado.
                         </div>
                     </div>
                 </div>
 
                 <div class="p-2 bg-white border-t border-slate-200 flex gap-2 items-center">
-                    <input type="text" id="chat-input" onkeydown="if(event.key === 'Enter') processChatQuery()" class="flex-1 p-2 border border-slate-300 rounded-lg text-xs outline-none focus:ring-1 focus:ring-blue-500" placeholder="Pregunta sobre el PDF (ej: resumen, costos)...">
-                    <button onclick="processChatQuery()" class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors flex items-center justify-center flex-shrink-0">
+                    <input type="text" id="chat-input" onkeydown="if(event.key === 'Enter') queryLocalChatAI()" class="flex-1 p-2 border border-slate-300 rounded-lg text-xs outline-none focus:ring-1 focus:ring-slate-700" placeholder="Escriba su consulta ejecutiva...">
+                    <button onclick="queryLocalChatAI()" class="bg-[#1e293b] hover:bg-slate-800 text-white p-2 rounded-lg transition-colors">
                         <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                     </button>
                 </div>
@@ -193,215 +209,380 @@
         </section>
     </main>
 
+    <footer class="bg-white border-t border-slate-200 py-2.5 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 text-slate-400">
+            <span class="text-[10px]">&copy; 2026 AI-ON Suite. Procesamiento Local bajo Cifrado en Cliente.</span>
+            <span class="text-[9px] font-medium tracking-wide text-slate-500 italic uppercase">Desarrollado por Guillermo J.P Viera</span>
+        </div>
+    </footer>
+
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 pointer-events-none space-y-2"></div>
 
     <script>
+        // Inicialización Segura
         const { jsPDF } = window.jspdf;
-
-        // Contexto Operativo Global
         let chartInstance = null;
         let base64ImageString = null;
         let generatedPdfBlob = null;
-        let generatedPdfFileName = "documento-analizado.pdf";
-        let speechUtterance = null;
-        let isSpeaking = false;
+        let activeDocumentType = "general";
 
         document.addEventListener('DOMContentLoaded', () => {
             initChartEngine();
             setupDragAndDrop();
-            initSpeechSynthesisEngine();
         });
 
-        // Alternador de Pestañas Multivista (Mobile UI Layout Master)
+        // Alternador Multivista Móvil
         function switchTab(tab) {
-            const modules = {
-                generator: document.getElementById('module-generator'),
-                preview: document.getElementById('module-preview'),
-                ai: document.getElementById('module-ai')
-            };
-            const tabs = {
-                generator: document.getElementById('tab-generator'),
-                preview: document.getElementById('tab-preview'),
-                ai: document.getElementById('tab-ai')
-            };
-
-            Object.keys(modules).forEach(key => {
+            const keys = ['generator', 'preview', 'ai'];
+            keys.forEach(key => {
+                const el = document.getElementById(`module-${key}`);
+                const tabEl = document.getElementById(`tab-${key}`);
                 if (key === tab) {
-                    modules[key].classList.remove('hidden');
-                    if (key === 'preview') modules[key].classList.add('sm:flex');
-                    if (key === 'ai') modules[key].classList.add('lg:flex');
-                    tabs[key].classList.add('active-tab');
-                    tabs[key].classList.remove('text-slate-500');
+                    el.classList.remove('hidden');
+                    if (key === 'preview') el.classList.add('sm:flex');
+                    if (key === 'ai') el.classList.add('lg:flex');
+                    tabEl.classList.add('active-tab');
                 } else {
-                    modules[key].classList.add('hidden');
-                    if (key === 'preview') modules[key].classList.remove('sm:flex');
-                    if (key === 'ai') modules[key].classList.remove('lg:flex');
-                    tabs[key].classList.remove('active-tab');
-                    tabs[key].classList.add('text-slate-500');
+                    el.classList.add('hidden');
+                    if (key === 'preview') el.classList.remove('sm:flex');
+                    if (key === 'ai') el.classList.remove('lg:flex');
+                    tabEl.classList.remove('active-tab');
                 }
             });
         }
 
-        // --- MOTOR 1: TEXT-TO-SPEECH (SPEECH SYNTHESIS API) ---
-        function initSpeechSynthesisEngine() {
-            if (!('speechSynthesis' in window)) {
-                document.getElementById('btn-voice-engine').style.display = 'none';
-                console.warn("API de Síntesis de voz no soportada en este entorno de navegador.");
-            }
-        }
+        // Manejo y Adaptación Dinámica de Formularios (CV vs General)
+        function toggleDocumentFormMode() {
+            activeDocumentType = document.getElementById('doc-type-selector').value;
+            const formGeneral = document.getElementById('form-general-wrapper');
+            const formCV = document.getElementById('form-cv-wrapper');
+            const titleSheet = document.getElementById('sheet-header-title');
 
-        function toggleVoiceEngine() {
-            const textToRead = document.getElementById('doc-text').value.trim() || document.getElementById('preview-text').textContent;
-
-            if (isSpeaking) {
-                window.speechSynthesis.cancel();
-                setVoiceUIState(false);
-                showToast("Lectura de voz pausada", "info");
+            if (activeDocumentType === "cv") {
+                formGeneral.classList.add('hidden');
+                formCV.classList.remove('hidden');
+                titleSheet.textContent = "CURRÍCULUM VITAE EJECUTIVO";
+                document.getElementById('btn-mentor-cv').classList.remove('opacity-50');
             } else {
-                window.speechSynthesis.cancel(); // Reset preventivo de colas
-                
-                speechUtterance = new SpeechSynthesisUtterance(textToRead);
-                speechUtterance.lang = 'es-ES';
-                
-                // Intento de mapeo a una voz en español clara del sistema si está disponible
-                const voices = window.speechSynthesis.getVoices();
-                const esVoice = voices.find(v => v.lang.includes('es-ES') || v.lang.includes('es-'));
-                if (esVoice) speechUtterance.voice = esVoice;
-
-                speechUtterance.onend = () => setVoiceUIState(false);
-                speechUtterance.onerror = () => setVoiceUIState(false);
-
-                window.speechSynthesis.speak(speechUtterance);
-                setVoiceUIState(true);
-                showToast("Iniciando motor de lectura nativo", "success");
+                formCV.classList.add('hidden');
+                formGeneral.classList.remove('hidden');
+                titleSheet.textContent = "DOCUMENTO DE ESTRATEGIA";
             }
         }
 
-        function setVoiceUIState(speaking) {
-            isSpeaking = speaking;
-            const playIcon = document.getElementById('icon-voice-play');
-            const pauseIcon = document.getElementById('icon-voice-pause');
-            const btnText = document.getElementById('text-voice-btn');
-
-            if (speaking) {
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-                btnText.textContent = "Pausar";
-            } else {
-                pauseIcon.classList.add('hidden');
-                playIcon.classList.remove('hidden');
-                btnText.textContent = "Oír PDF";
-            }
-        }
-
-        // --- MOTOR 2: ASISTENTE DE IA LOCAL (SIMULACIÓN HEURÍSTICA AVANZADA) ---
-        function appendChatMessage(sender, text) {
-            const container = document.getElementById('chat-logs');
-            const msgNode = document.createElement('div');
-            
-            if (sender === 'user') {
-                msgNode.className = "flex items-start justify-end gap-2 max-w-[85%] ml-auto";
-                msgNode.innerHTML = `<div class="bg-slate-200 text-slate-800 rounded-lg p-2.5 rounded-tr-none shadow-xs font-normal">${text}</div>`;
-            } else {
-                msgNode.className = "flex items-start gap-2 max-w-[85%]";
-                msgNode.innerHTML = `<div class="bg-blue-600 text-white rounded-lg p-2.5 rounded-tl-none shadow-xs font-normal whitespace-pre-line">${text}</div>`;
-            }
-            
-            container.appendChild(msgNode);
-            container.scrollTop = container.scrollHeight;
-        }
-
-        function getDocumentContext() {
+        // Obtener Modelo Completo de Datos Actuales en Interfaz
+        function extractUIData() {
             return {
                 text: document.getElementById('doc-text').value.trim(),
-                metricLabel1: document.getElementById('label-1').value || 'Métrica A',
-                metricVal1: document.getElementById('value-1').value || '0',
-                metricLabel2: document.getElementById('label-2').value || 'Métrica B',
-                metricVal2: document.getElementById('value-2').value || '0'
+                cvName: document.getElementById('cv-name').value.trim(),
+                cvContact: document.getElementById('cv-contact').value.trim(),
+                cvExperience: document.getElementById('cv-experience').value.trim(),
+                cvEducation: document.getElementById('cv-education').value.trim(),
+                cvSkills: document.getElementById('cv-skills').value.trim(),
+                l1: document.getElementById('label-1').value || 'Métrica A',
+                v1: parseFloat(document.getElementById('value-1').value) || 0,
+                l2: document.getElementById('label-2').value || 'Métrica B',
+                v2: parseFloat(document.getElementById('value-2').value) || 0
             };
         }
 
-        function triggerLocalSummary() {
-            const ctx = getDocumentContext();
-            if (!ctx.text) {
-                showToast("Por favor escriba texto en el módulo 1 para poder resumir.", "error");
-                return;
+        // --- MENTORÍA E IA DE AI-ON (HEURÍSTICA COGNITIVA LOCAL) ---
+        function appendChatMessage(sender, text) {
+            const container = document.getElementById('chat-logs');
+            const node = document.createElement('div');
+            if (sender === 'user') {
+                node.className = "flex items-start justify-end gap-2 max-w-[90%] ml-auto";
+                node.innerHTML = `<div class="bg-slate-200 text-slate-800 rounded-lg p-2.5 rounded-tr-none shadow-xs font-medium">${text}</div>`;
+            } else {
+                node.className = "flex items-start gap-2 max-w-[90%]";
+                node.innerHTML = `<div class="bg-[#1e293b] text-white rounded-lg p-2.5 rounded-tl-none shadow-sm whitespace-pre-line leading-relaxed">${text}</div>`;
             }
-
-            showToast("Ejecutando síntesis conceptual...", "info");
-            
-            setTimeout(() => {
-                const segmentIntro = ctx.text.split('.').slice(0, 2).join('.') + '.';
-                const summaryResponse = `📊 **RESUMEN EJECUTIVO DEL DOCUMENTO:**\n\n` +
-                    `• **1. INTRODUCCIÓN:** Se analiza estructuralmente el documento que describe: "${segmentIntro.substring(0, 80)}...".\n\n` +
-                    `• **2. ANÁLISIS DE MÉTRICAS:** El motor detectó dos variables críticas indexadas en el reporte vectorizado: **${ctx.metricLabel1}** con un valor absoluto de **${ctx.metricVal1}** y **${ctx.metricLabel2}** representando un valor de **${ctx.metricVal2}**.\n\n` +
-                    `• **3. CONCLUSIÓN INTEGRAL:** Basado en la correlación local, el documento valida las tendencias del texto y muestra un ecosistema controlado y listo para la descarga en PDF.`;
-                
-                appendChatMessage('ai', summaryResponse);
-            }, 300);
+            container.appendChild(node);
+            container.scrollTop = container.scrollHeight;
         }
 
-        function processChatQuery() {
-            const inputNode = document.getElementById('chat-input');
-            const query = inputNode.value.trim();
-            if (!query) return;
-
-            appendChatMessage('user', query);
-            inputNode.value = '';
-
-            const ctx = getDocumentContext();
-            const normalizedQuery = query.toLowerCase();
-
-            // Retardo de procesamiento para simular inferencia de red neuronal
+        function executeBusinessDiagnosis() {
+            const data = extractUIData();
+            if (activeDocumentType === "cv") {
+                appendChatMessage('ai', "💼 **AI-ON Diagnóstico:** Actualmente está configurado el modo Currículum Vitae. Cambie al modo 'Documento General' para auditar y diagnosticar propuestas comerciales complejas o matrices de procesos de agencias.");
+                return;
+            }
+            if (!data.text) {
+                showToast("Inserte texto descriptivo para auditar", "error");
+                return;
+            }
+            showToast("Ejecutando Diagnóstico de Procesos...", "info");
             setTimeout(() => {
-                let aiResponse = "";
-
-                if (!ctx.text) {
-                    aiResponse = "El documento se encuentra vacío actualmente. Ingrese algún párrafo o métrica en el módulo de Estructuración para habilitar el análisis cognitivo.";
-                } else if (normalizedQuery.includes('resumen') || normalizedQuery.includes('resumir') || normalizedQuery.includes('sintesis')) {
-                    const segmentIntro = ctx.text.split('.').slice(0, 1).join('.');
-                    aiResponse = `**Resumen del Documento:** El informe aborda de manera directa: "${segmentIntro}". Registra métricas de desempeño financiero u operativo tituladas *${ctx.metricLabel1}* (${ctx.metricVal1}) junto a *${ctx.metricLabel2}* (${ctx.metricVal2}).`;
-                } else if (normalizedQuery.includes('metrica') || normalizedQuery.includes('grafic') || normalizedQuery.includes('numero') || normalizedQuery.includes('valor') || normalizedQuery.includes('venta') || normalizedQuery.includes('costo')) {
-                    aiResponse = `Análisis de Estructura Estadística:\nHe localizado variables registradas en el canvas vectorial:\n- **${ctx.metricLabel1}**: ${ctx.metricVal1}\n- **${ctx.metricLabel2}**: ${ctx.metricVal2}\nLa relación porcentual de impacto es de ${((parseFloat(ctx.metricVal2)/(parseFloat(ctx.metricVal1)||1))*100).toFixed(1)}% de la segunda variable frente a la primera.`;
-                } else if (normalizedQuery.includes('conclusion') || normalizedQuery.includes('final') || normalizedQuery.includes('termina')) {
-                    aiResponse = `**Conclusión Heurística:** El escrito consolida un flujo técnico estable. La presencia de data cuantitativa combinada con texto enriquecido permite dictaminar que los objetivos de este reporte cumplen con los requerimientos corporativos sin fugas de información.`;
-                } else {
-                    // Respuesta semántica adaptativa basada en palabras clave del propio texto del usuario
-                    const keywords = ctx.text.split(' ').filter(w => w.length > 5).slice(0, 3);
-                    if(keywords.length > 0) {
-                        aiResponse = `He analizado tu consulta sobre el documento. Evaluando los conceptos clave como "${keywords.join(', ')}", observo que el cuerpo del texto mantiene coherencia lógica y está listo para ser compilado físicamente como un binario PDF nítido. ¿Te gustaría algún enfoque particular sobre estos puntos?`;
-                    } else {
-                        aiResponse = `Entendido. He escaneado el documento localmente. El texto ingresado posee una extensión de ${ctx.text.length} caracteres y cuenta con soporte de gráficos en tiempo real. ¿Deseas que extraiga las métricas o genere un resumen formal en 3 puntos?`;
-                    }
-                }
-
-                appendChatMessage('ai', aiResponse);
+                const response = `📈 **DIAGNÓSTICO ESTRATÉGICO AI-ON:**\n\n` +
+                    `• **Optimización de Procesos:** La arquitectura operativa descrita muestra áreas de oportunidad sólidas. Al cruzar datos con la métrica *${data.l1}* (${data.v1}), se recomienda estandarizar los embudos operativos un 15% para mitigar cuellos de botella.\n\n` +
+                    `• **Viabilidad Comercial:** El documento posee una narrativa enfocada en valor. Sin embargo, para contrarrestar la métrica de *${data.l2}* (${data.v2}), es crítico implementar esquemas de consultoría B2B recurrentes e hitos claros de entrega.`;
+                appendChatMessage('ai', response);
             }, 400);
         }
 
-        // --- SISTEMA PREEXISTENTE OPTIMIZADO Y ADAPTADO ---
-        function setupDragAndDrop() {
-            const dropZone = document.getElementById('drop-zone');
-            const imageInput = document.getElementById('image-input');
-            imageInput.addEventListener('change', (e) => handleFileSelection(e.target.files[0]));
-            ['dragenter', 'dragover'].forEach(name => dropZone.addEventListener(name, (e) => { e.preventDefault(); dropZone.classList.add('bg-blue-50', 'border-blue-400'); }, false));
-            ['dragleave', 'drop'].forEach(name => dropZone.addEventListener(name, (e) => { e.preventDefault(); dropZone.classList.remove('bg-blue-50', 'border-blue-400'); }, false));
-            dropZone.addEventListener('drop', (e) => { const dt = e.dataTransfer; if(dt.files && dt.files[0]) handleFileSelection(dt.files[0]); });
+        function executeProfileMentorship() {
+            const data = extractUIData();
+            if (activeDocumentType !== "cv") {
+                appendChatMessage('ai', "🚀 **AI-ON Mentor:** Para optimizar perfiles profesionales de alto impacto, active el selector de 'Tipo de Documento' en **Currículum Vitae** e ingrese su trayectoria.");
+                return;
+            }
+            if (!data.cvExperience || !data.cvSkills) {
+                showToast("Por favor, rellene Experiencia y Habilidades", "error");
+                return;
+            }
+            showToast("Redactando Perfil Ejecutivo de Alto Impacto...", "info");
+            setTimeout(() => {
+                const profileSummary = `✨ **PERFIL PROFESIONAL OPTIMIZADO (COPIAR AL CV):**\n\n` +
+                    `"${data.cvName}. Especialista estratégico con un sólido track record enfocado en **${data.cvSkills.split(',').slice(0, 3).join(', ')}**. ` +
+                    `Con trayectoria verificable en hitos de alto rendimiento, tales como: *${data.cvExperience.substring(0, 90)}...* ` +
+                    `Experto en articular soluciones de consultoría transformacionales mediante un enfoque analítico, escalabilidad de procesos y gobernanza corporativa orientada a resultados tangibles."`;
+                appendChatMessage('ai', profileSummary);
+            }, 450);
         }
 
-        function handleFileSelection(file) {
-            if (!file) return;
-            if (!file.type.match('image.*')) { showToast("Debe subir un archivo de imagen válido", "error"); return; }
+        function queryLocalChatAI() {
+            const input = document.getElementById('chat-input');
+            const query = input.value.trim();
+            if (!query) return;
+            appendChatMessage('user', query);
+            input.value = '';
+
+            const data = extractUIData();
+            const norm = query.toLowerCase();
+
+            setTimeout(() => {
+                let r = "";
+                if (norm.includes('cv') || norm.includes('perfil') || norm.includes('currículum') || norm.includes('trabajo')) {
+                    r = `**Asesoría de Marca Personal AI-ON:** Evaluando el perfil de *${data.cvName || 'Usuario'}*, se destaca la competencia en *${data.cvSkills}*. Se aconseja que el PDF final no exceda una página y que sitúe las métricas numéricas al inicio de cada logro laboral.`;
+                } else if (norm.includes('métrica') || norm.includes('gráfic') || norm.includes('número')) {
+                    r = `**Análisis Cuantitativo:** He procesado el vector operativo actual:\n- Variable de Control 1 [${data.l1}]: ${data.v1}\n- Variable de Control 2 [${data.l2}]: ${data.v2}\nEsta correlación se dibuja en nitidez absoluta en el PDF ejecutable para la validación de sus stakeholders.`;
+                } else {
+                    r = `**Respuesta Consultiva:** La suite AI-ON ha indexado los parámetros locales de forma privada. Su estructura documental está optimizada en un layout A4 simétrico listo para la exportación binaria. ¿Desea refinar la conclusión o la propuesta de valor?`;
+                }
+                appendChatMessage('ai', r);
+            }, 300);
+        }
+
+        // --- MOTOR TEXT-TO-SPEECH (LECTOR NATIVO) ---
+        let speechInstance = null;
+        function executeTextToSpeech() {
+            if (!('speechSynthesis' in window)) { showToast("TTS no soportado", "error"); return; }
+            
+            if (window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                document.getElementById('voice-icon').className = "w-2 h-2 rounded-full bg-emerald-500 inline-block";
+                document.getElementById('voice-text').textContent = "Oír PDF";
+                showToast("Lectura de voz finalizada", "info");
+                return;
+            }
+
+            const data = extractUIData();
+            let rawText = "";
+            if (activeDocumentType === "cv") {
+                rawText = `Currículum Vitae de ${data.cvName}. Datos de contacto: ${data.cvContact}. Experiencia Laboral: ${data.cvExperience}. Formación: ${data.cvEducation}. Habilidades: ${data.cvSkills}`;
+            } else {
+                rawText = data.text || "Documento de estrategia vacío.";
+            }
+
+            speechInstance = new SpeechSynthesisUtterance(rawText);
+            speechInstance.lang = 'es-ES';
+            
+            speechInstance.onend = () => {
+                document.getElementById('voice-icon').className = "w-2 h-2 rounded-full bg-emerald-500 inline-block";
+                document.getElementById('voice-text').textContent = "Oír PDF";
+            };
+
+            document.getElementById('voice-icon').className = "w-2 h-2 rounded-full bg-red-500 inline-block animate-ping";
+            document.getElementById('voice-text').textContent = "Detener";
+            
+            window.speechSynthesis.speak(speechInstance);
+            showToast("Reproduciendo lectura en el cliente", "success");
+        }
+
+        // --- SISTEMA PREEXISTENTE OPTIMIZADO Y LAYOUT COMPILADOR ---
+        function initChartEngine() {
+            const ctx = document.getElementById('chart-canvas').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Eficiencia', 'Costos Operativos'],
+                    datasets: [{
+                        data: [95, 40],
+                        backgroundColor: ['#1e293b', '#94a3b8'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, ticks: { font: { size: 6 } } }, x: { ticks: { font: { size: 6 } } } }
+                }
+            });
+        }
+
+        function compileExecutiveDocument() {
+            const data = extractUIData();
+            const bodySheet = document.getElementById('sheet-dynamic-body');
+            
+            // Actualizar Lienzo A4 Virtual
+            if (activeDocumentType === "cv") {
+                bodySheet.innerHTML = `**DATOS DE CONTACTO:**\n${data.cvContact}\n\n**EXPERIENCIA LABORAL:**\n${data.cvExperience}\n\n**FORMACIÓN ACADÉMICA:**\n${data.cvEducation}\n\n**COMPETENCIAS CLAVE:**\n${data.cvSkills}`;
+            } else {
+                bodySheet.textContent = data.text || "El documento o estructura curricular aparecerá compilado de manera vectorial en este bloque...";
+            }
+
+            // Actualizar Gráfico
+            chartInstance.data.labels = [data.l1, data.l2];
+            chartInstance.data.datasets[0].data = [data.v1, data.v2];
+            chartInstance.update();
+
+            showToast("Compilando binario PDF...", "info");
+
+            setTimeout(() => {
+                try {
+                    const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+                    
+                    // Márgenes Ejecutivos y Encabezado Estilizado
+                    pdf.setFillColor(30, 41, 59);
+                    pdf.rect(0, 0, 210, 18, 'F');
+                    
+                    pdf.setTextColor(248, 250, 252);
+                    pdf.setFont("helvetica", "bold");
+                    pdf.setFontSize(13);
+                    pdf.text("SUITE PROFESIONAL | AI-ON AGENCIA Y MENTORIA", 15, 11);
+
+                    pdf.setTextColor(30, 41, 59);
+                    pdf.setFontSize(10);
+                    
+                    let cursorY = 30;
+                    if (activeDocumentType === "cv") {
+                        pdf.setFont("helvetica", "bold");
+                        pdf.setFontSize(14);
+                        pdf.text(data.cvName.toUpperCase(), 15, cursorY);
+                        pdf.setFontSize(10);
+                        pdf.setFont("helvetica", "normal");
+                        pdf.text(`Contacto: ${data.cvContact}`, 15, cursorY + 5);
+                        
+                        pdf.setLineWidth(0.3);
+                        pdf.line(15, cursorY + 8, 195, cursorY + 8);
+                        
+                        cursorY += 15;
+                        pdf.setFont("helvetica", "bold");
+                        pdf.text("TRAYECTORIA Y EXPERIENCIA LABORAL", 15, cursorY);
+                        pdf.setFont("helvetica", "normal");
+                        let linesExp = pdf.splitTextToSize(data.cvExperience || "No especificada.", 180);
+                        pdf.text(linesExp, 15, cursorY + 5);
+                        
+                        cursorY += 12 + (linesExp.length * 4);
+                        pdf.setFont("helvetica", "bold");
+                        pdf.text("EDUCACIÓN Y CERTIFICACIONES", 15, cursorY);
+                        pdf.setFont("helvetica", "normal");
+                        let linesEdu = pdf.splitTextToSize(data.cvEducation || "No especificada.", 180);
+                        pdf.text(linesEdu, 15, cursorY + 5);
+
+                        cursorY += 12 + (linesEdu.length * 4);
+                        pdf.setFont("helvetica", "bold");
+                        pdf.text("COMPETENCIAS Y HABILIDADES", 15, cursorY);
+                        pdf.setFont("helvetica", "normal");
+                        pdf.text(data.cvSkills || "No especificadas.", 15, cursorY + 5);
+                        cursorY += 15;
+                    } else {
+                        pdf.setFont("helvetica", "bold");
+                        pdf.text("PROPUESTA ESTRATÉGICA DE NEGOCIO", 15, cursorY);
+                        pdf.setFont("helvetica", "normal");
+                        let linesText = pdf.splitTextToSize(data.text || "Documento en blanco procesado por el cliente.", 180);
+                        pdf.text(linesText, 15, cursorY + 5);
+                        cursorY += 10 + (linesText.length * 4.5);
+                    }
+
+                    // Renderizar Gráfico
+                    if (cursorY > 220) { pdf.addPage(); cursorY = 25; }
+                    pdf.setFont("helvetica", "bold");
+                    pdf.text("INDICADORES Y RENDIMIENTO OPERATIVO", 15, cursorY);
+                    pdf.addImage(chartInstance.toBase64Image(), 'PNG', 15, cursorY + 3, 90, 48);
+                    
+                    cursorY += 58;
+
+                    // Adjuntar Imagen/Foto si existe
+                    if (base64ImageString) {
+                        if (cursorY > 230) { pdf.addPage(); cursorY = 25; }
+                        pdf.setFont("helvetica", "bold");
+                        pdf.text("RECURSO / ADJUNTO DE MARCA", 15, cursorY);
+                        pdf.addImage(base64ImageString, 'JPEG', 15, cursorY + 3, 40, 40);
+                    }
+
+                    // Pie de página elegante corporativo
+                    pdf.setFont("helvetica", "italic");
+                    pdf.setFontSize(7.5);
+                    pdf.setTextColor(148, 163, 184);
+                    pdf.text("Procesamiento local privado. Desarrollado por Guillermo J.P Viera", 15, 288);
+
+                    generatedPdfBlob = pdf.output('blob');
+
+                    // Habilitar Acciones
+                    const dButton = document.getElementById('btn-download');
+                    const sButton = document.getElementById('btn-share');
+                    [dButton, sButton].forEach(btn => {
+                        btn.removeAttribute('disabled');
+                        btn.classList.remove('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
+                    });
+                    dButton.classList.add('bg-[#1e293b]', 'hover:bg-slate-800', 'text-white');
+                    sButton.classList.add('bg-[#1e293b]', 'hover:bg-slate-800', 'text-white');
+
+                    showToast("¡Documento compilado y listo para exportación!", "success");
+                } catch (e) {
+                    console.error(e);
+                    showToast("Fallo en compilación interna", "error");
+                }
+            }, 300);
+        }
+
+        function downloadExecutivePDF() {
+            if (!generatedPdfBlob) return;
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(generatedPdfBlob);
+            link.download = activeDocumentType === "cv" ? "CV_Ejecutivo_AI_ON.pdf" : "Estrategia_Agencia_AI_ON.pdf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("Documento binario guardado", "success");
+        }
+
+        async function shareExecutivePDF() {
+            if (!generatedPdfBlob) return;
+            const filename = activeDocumentType === "cv" ? "CV_AI_ON.pdf" : "Estrategia_AI_ON.pdf";
+            const file = new File([generatedPdfBlob], filename, { type: 'application/pdf' });
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                try {
+                    await navigator.share({ files: [file], title: 'Documentación AI-ON Suite', text: 'Propuesta emitida desde AI-ON.' });
+                } catch (e) { if(e.name !== 'AbortError') showToast("Error al compartir", "error"); }
+            } else {
+                showToast("Navegador incompatible con compartición directa.", "info");
+            }
+        }
+
+        function setupDragAndDrop() {
+            const dz = document.getElementById('drop-zone');
+            const input = document.getElementById('image-input');
+            input.addEventListener('change', (e) => handleImageConversion(e.target.files[0]));
+            ['dragenter', 'dragover'].forEach(n => dz.addEventListener(n, (e) => { e.preventDefault(); dz.classList.add('bg-slate-200'); }, false));
+            ['dragleave', 'drop'].forEach(n => dz.addEventListener(n, (e) => { e.preventDefault(); dz.classList.remove('bg-slate-200'); }, false));
+            dz.addEventListener('drop', (e) => { e.preventDefault(); const f = e.dataTransfer.files[0]; if(f) handleImageConversion(f); });
+        }
+
+        function handleImageConversion(file) {
+            if (!file || !file.type.match('image.*')) { showToast("Cargue una imagen válida", "error"); return; }
             const reader = new FileReader();
             reader.onload = function(e) {
                 base64ImageString = e.target.result;
                 document.getElementById('image-preview').src = base64ImageString;
-                document.getElementById('image-name').textContent = file.name;
                 document.getElementById('image-preview-container').classList.remove('hidden');
-                const imgBlock = document.getElementById('preview-img-block');
-                imgBlock.style.backgroundImage = `url('${base64ImageString}')`;
-                imgBlock.classList.remove('hidden');
-                showToast("Imagen indexada de forma local", "success");
+                
+                const sheetPic = document.getElementById('sheet-profile-pic');
+                sheetPic.style.backgroundImage = `url('${base64ImageString}')`;
+                sheetPic.classList.remove('hidden');
+                showToast("Imagen cargada con éxito", "success");
             };
             reader.readAsDataURL(file);
         }
@@ -410,141 +591,20 @@
             base64ImageString = null;
             document.getElementById('image-input').value = "";
             document.getElementById('image-preview-container').classList.add('hidden');
-            document.getElementById('preview-img-block').classList.add('hidden');
+            document.getElementById('sheet-profile-pic').classList.add('hidden');
         }
 
-        function initChartEngine() {
-            const ctx = document.getElementById('chart-canvas').getContext('2d');
-            chartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Ventas', 'Costos'],
-                    datasets: [{
-                        data: [150, 90],
-                        backgroundColor: ['rgba(37, 99, 235, 0.8)', 'rgba(239, 68, 68, 0.8)'],
-                        borderColor: ['#1d4ed8', '#b91c1c'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: { y: { beginAtZero: true, ticks: { font: { size: 7 } } }, x: { ticks: { font: { size: 7 } } } }
-                }
-            });
-        }
-
-        function generatePDFData() {
-            const userText = document.getElementById('doc-text').value;
-            const l1 = document.getElementById('label-1').value || 'Métrica A';
-            const v1 = parseFloat(document.getElementById('value-1').value) || 0;
-            const l2 = document.getElementById('label-2').value || 'Métrica B';
-            const v2 = parseFloat(document.getElementById('value-2').value) || 0;
-
-            document.getElementById('preview-text').textContent = userText || "El contenido estructurado se compilará en este contenedor físico simulado...";
-            
-            chartInstance.data.labels = [l1, l2];
-            chartInstance.data.datasets[0].data = [v1, v2];
-            chartInstance.update();
-
-            showToast("Compilando arquitectura vectorial...", "info");
-
-            setTimeout(() => {
-                try {
-                    const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
-                    
-                    pdf.setFillColor(37, 25, 235);
-                    pdf.rect(0, 0, 210, 15, 'F');
-                    pdf.setTextColor(255, 255, 255);
-                    pdf.setFont("helvetica", "bold");
-                    pdf.setFontSize(14);
-                    pdf.text("PDF ARCHITECT EXECUTIVE REPORT", 15, 10);
-                    
-                    pdf.setTextColor(51, 65, 85);
-                    pdf.setFont("helvetica", "normal");
-                    pdf.setFontSize(11);
-                    
-                    const textContent = userText || "Documento procesado por el motor local.";
-                    const splitText = pdf.splitTextToSize(textContent, 180);
-                    pdf.text(splitText, 15, 25);
-                    
-                    let currentY = 30 + (splitText.length * 5);
-
-                    const chartBase64 = chartInstance.toBase64Image();
-                    pdf.setFont("helvetica", "bold");
-                    pdf.text("Indicadores Estadísticos de Control", 15, currentY);
-                    pdf.addImage(chartBase64, 'PNG', 15, currentY + 3, 95, 55);
-                    
-                    currentY += 65;
-
-                    if (base64ImageString) {
-                        if(currentY > 240) { pdf.addPage(); currentY = 20; }
-                        pdf.setFont("helvetica", "bold");
-                        pdf.text("Archivo Adjunto Indexado", 15, currentY);
-                        pdf.addImage(base64ImageString, 'JPEG', 15, currentY + 3, 75, 50);
-                    }
-
-                    pdf.setFont("helvetica", "italic");
-                    pdf.setFontSize(8);
-                    pdf.setTextColor(148, 163, 184);
-                    pdf.text("Motor PDF Architect Pro - Procesamiento local con Inteligencia Analítica Habilitada.", 15, 288);
-
-                    generatedPdfBlob = pdf.output('blob');
-                    
-                    const btnDownload = document.getElementById('btn-download');
-                    const btnShare = document.getElementById('btn-share');
-                    
-                    [btnDownload, btnShare].forEach(btn => {
-                        btn.removeAttribute('disabled');
-                        btn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
-                    });
-                    btnDownload.classList.add('bg-blue-600', 'hover:bg-blue-700', 'text-white');
-                    btnShare.classList.add('bg-emerald-600', 'hover:bg-emerald-700', 'text-white');
-
-                    showToast("PDF e IA sincronizados con éxito", "success");
-                } catch (error) {
-                    console.error(error);
-                    showToast("Error en compilación nativa", "error");
-                }
-            }, 350);
-        }
-
-        function downloadPDF() {
-            if (!generatedPdfBlob) return;
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(generatedPdfBlob);
-            link.download = generatedPdfFileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast("Archivo PDF guardado", "success");
-        }
-
-        async function sharePDF() {
-            if (!generatedPdfBlob) return;
-            const file = new File([generatedPdfBlob], generatedPdfFileName, { type: 'application/pdf' });
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                try {
-                    await navigator.share({ files: [file], title: 'Reporte PDF Inteligente', text: 'Enviado desde PDF Architect Pro.' });
-                } catch (err) { if(err.name !== 'AbortError') showToast("Error al compartir", "error"); }
-            } else {
-                showToast("Navegador incompatible con compartición nativa binaria.", "info");
-            }
-        }
-
-        function showToast(message, type = "info") {
+        function showToast(msg, type = "info") {
             const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            let bgClass = "bg-slate-800";
-            if (type === "success") bgClass = "bg-emerald-600";
-            if (type === "error") bgClass = "bg-red-600";
-            if (type === "info") bgClass = "bg-blue-600";
-            toast.className = `${bgClass} text-white px-3 py-2 rounded-lg shadow-md text-xs font-medium transition-all transform translate-y-2 opacity-0 pointer-events-auto max-w-xs`;
-            toast.textContent = message;
-            container.appendChild(toast);
-            setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
-            setTimeout(() => { toast.classList.add('opacity-0', 'translate-y-2'); setTimeout(() => toast.remove(), 300); }, 3000);
+            const t = document.createElement('div');
+            let c = "bg-slate-800";
+            if (type === "success") c = "bg-slate-900 border border-slate-700";
+            if (type === "error") c = "bg-red-700";
+            t.className = `${c} text-white px-3 py-2 rounded-lg shadow-xl text-xs font-semibold transition-all transform translate-y-2 opacity-0 pointer-events-auto`;
+            t.textContent = msg;
+            container.appendChild(t);
+            setTimeout(() => t.classList.remove('translate-y-2', 'opacity-0'), 10);
+            setTimeout(() => { t.classList.add('opacity-0', 'translate-y-2'); setTimeout(() => t.remove(), 300); }, 3000);
         }
     </script>
 </body>
