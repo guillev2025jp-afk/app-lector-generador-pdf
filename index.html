@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF AI-ON Agencia y Mentoria | Suite Profesional</title>
+    <title>PDF AI-ON Agencia y Mentoria | Enterprise Suite</title>
     
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlBERiBASS1PTiBBZ2VuY2lhIHkgTWVudG9yaWEiLAogICJzaG9ydF9uYW1lIjogIkFJLk9OIFN1aXRlIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMxZTI5M2IiLAogICJ0aGVtZV9jb2xvciI6IiMxZTI5M2IiCn0=">
     
@@ -34,38 +34,38 @@
 <body class="bg-[#f1f5f9] font-sans text-slate-800 min-h-screen flex flex-col justify-between">
 
     <header class="bg-[#1e293b] text-[#f8fafc] shadow-md p-4 sticky top-0 z-50 border-b border-slate-700">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="max-w-[1600px] mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <svg class="w-6 h-6 text-slate-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
-                <h1 class="text-base sm:text-lg font-bold tracking-wide">PDF AI-ON Agencia y Mentoria <span class="text-slate-400 font-light text-xs sm:text-sm block sm:inline sm:ml-2">| Suite Profesional</span></h1>
+                <h1 class="text-base sm:text-lg font-bold tracking-wide">PDF AI-ON Agencia y Mentoria <span class="text-slate-400 font-light text-xs sm:text-sm block sm:inline sm:ml-2">| Suite Avanzada 4 Columnas</span></h1>
             </div>
             <select id="doc-type-selector" onchange="toggleDocumentFormMode()" class="text-xs font-bold bg-slate-800 text-slate-200 border border-slate-600 rounded-lg px-2.5 py-1.5 outline-none focus:ring-2 focus:ring-slate-400 transition-all cursor-pointer">
-                <option value="cv">Format: Currículum Vitae (CV)</option>
-                <option value="general">Format: Documento General</option>
+                <option value="cv">Modo: Currículum Vitae (CV)</option>
+                <option value="general">Modo: Documento General / Informe</option>
             </select>
         </div>
     </header>
 
     <div class="md:hidden bg-white shadow-sm flex border-b border-slate-200 sticky top-[65px] z-40">
         <button id="tab-generator" class="flex-1 py-3 text-center text-xs font-semibold active-tab" onclick="switchTab('generator')">1. Datos</button>
-        <button id="tab-ai" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500" onclick="switchTab('ai')">2. Mentor AI-ON</button>
-        <button id="tab-preview" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500" onclick="switchTab('preview')">3. Vista PDF</button>
+        <button id="tab-ai" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500" onclick="switchTab('ai')">2. Asistente</button>
+        <button id="tab-preview" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500" onclick="switchTab('preview')">3. Vista A4</button>
+        <button id="tab-reports" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500 hidden" onclick="switchTab('reports')">4. Métricas</button>
     </div>
 
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <main class="flex-1 max-w-[1600px] w-full mx-auto p-4 lg:p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 transition-all duration-300" id="main-grid-layout">
         
         <section id="module-generator" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200/80 flex flex-col space-y-4">
             <div class="border-b border-slate-100 pb-2">
                 <h2 class="text-xs font-bold text-[#1e293b] uppercase tracking-wider flex items-center gap-2">
-                    <span class="bg-slate-100 px-2 py-0.5 rounded text-[#1e293b]">01</span> Captura de Información
+                    <span class="bg-slate-100 px-2 py-0.5 rounded text-[#1e293b]">01</span> Entrada de Datos
                 </h2>
             </div>
 
             <div class="flex-1 flex flex-col justify-between space-y-3">
-                
-                <div id="form-cv-wrapper" class="flex flex-col space-y-2.5 overflow-y-auto pr-1 flex-1 max-h-[500px] chat-scroll">
+                <div id="form-cv-wrapper" class="flex flex-col space-y-2.5 overflow-y-auto pr-1 flex-1 max-h-[520px] chat-scroll">
                     <div>
                         <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Nombre Completo</label>
                         <input type="text" id="cv-name" value="Lic. Carlos Mendoza Viera" class="w-full p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all">
@@ -88,48 +88,71 @@
                             <input type="text" id="cv-address" value="Madrid, España" class="w-full p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all">
                         </div>
                         <div>
-                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Enlace LinkedIn</label>
-                            <input type="text" id="cv-linkedin" value="linkedin.com/in/carlos-mendoza" class="w-full p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all">
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Código Postal</label>
+                            <input type="text" id="cv-zip" value="28001" class="w-full p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all">
                         </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Fecha de Nacimiento</label>
+                            <input type="date" id="cv-birth" value="1992-05-12" class="w-full p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Nacionalidad</label>
+                            <input type="text" id="cv-nationality" value="Española" class="w-full p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Perfil Laboral / Resumen Profesional</label>
+                        <textarea id="cv-summary" class="w-full h-16 p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all resize-none chat-scroll" placeholder="Escriba un extracto de alto impacto...">Profesional orientado a resultados con experiencia en dirección de proyectos de transformación digital corporativa.</textarea>
                     </div>
 
                     <div>
                         <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Trayectoria y Experiencia Laboral</label>
-                        <textarea id="cv-experience" class="w-full h-20 p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all resize-none chat-scroll" placeholder="Detalle cargos, empresas y logros cuantificables... Spain (2024 - Presente).">Director de Operaciones en AI-ON Agencia (2024 - Presente). Lideré la automatización de flujos de trabajo e integración de microservicios corporativos en el cliente.</textarea>
+                        <textarea id="cv-experience" class="w-full h-16 p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all resize-none chat-scroll">Director de Operaciones en AI-ON Agencia (2024 - Presente). Lideré la automatización de flujos de trabajo e integración de arquitecturas corporativas.</textarea>
                     </div>
 
-                    <div>
-                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Formación Académica y Certificados</label>
-                        <textarea id="cv-education" class="w-full h-16 p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all resize-none chat-scroll" placeholder="Títulos, instituciones y fechas...">Máster en Dirección Estratégica y Consultoría de Procesos Inteligentes - Universidad Internacional Tecnológica.</textarea>
-                    </div>
-
-                    <div>
-                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Habilidades y Competencias Clave</label>
-                        <input type="text" id="cv-skills" value="Consultoría Corporativa, Optimización de Procesos, Estrategia B2B, Full Stack JS" class="w-full p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Educación y Estudios</label>
+                            <textarea id="cv-education" class="w-full h-12 p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all resize-none chat-scroll">Máster en Dirección Estratégica.</textarea>
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Habilidades y Competencias</label>
+                            <textarea id="cv-skills" class="w-full h-12 p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all resize-none chat-scroll">Consultoría Corporativa, Gestión de Retainers, Estrategias B2B.</textarea>
+                        </div>
                     </div>
                 </div>
 
-                <div id="form-general-wrapper" class="hidden flex flex-col space-y-2 flex-1">
-                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Contenido de la Propuesta Estratégica</label>
-                    <textarea id="doc-text" class="w-full flex-1 min-h-[360px] p-3 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all chat-scroll" placeholder="Redacte la propuesta comercial, procesos o auditorías generales de la organización..."></textarea>
+                <div id="form-general-wrapper" class="hidden flex flex-col space-y-2.5 flex-1">
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Título del Informe Comercial</label>
+                        <input type="text" id="doc-title" value="Auditoría de Rendimiento Trimestral Q2" class="w-full p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all">
+                    </div>
+                    <div class="flex-1 flex flex-col">
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Cuerpo / Métricas Operativas del Informe</label>
+                        <textarea id="doc-text" class="w-full flex-1 min-h-[300px] p-3 border border-slate-300 rounded-lg text-xs bg-slate-50 focus:bg-white outline-none focus:ring-1 focus:ring-slate-700 transition-all chat-scroll" placeholder="Escriba los datos operacionales de la organización...">El rendimiento logístico incrementó un 14% debido al despliegue de automatizaciones de software. Se redujeron fricciones de soporte B2B y los cuellos de botella disminuyeron un 8% en plantas de empaque.</textarea>
+                    </div>
                 </div>
 
-                <div class="pt-2">
-                    <div id="drop-zone" class="border border-dashed border-slate-300 rounded-lg p-2.5 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100/70 transition-colors cursor-pointer relative">
+                <div>
+                    <div id="drop-zone" class="border border-dashed border-slate-300 rounded-lg p-2 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer relative">
                         <input type="file" id="image-input" accept="image/png, image/jpeg, image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                        <p class="text-[11px] text-slate-600 font-medium"><span class="text-[#1e293b] underline font-semibold">Adjuntar Foto CV / Logo de Agencia</span></p>
+                        <p class="text-[11px] text-slate-600 font-medium"><span class="text-[#1e293b] underline font-semibold">Cargar Logotipo / Foto de Perfil</span></p>
                     </div>
-                    <div id="image-preview-container" class="hidden mt-2 border border-slate-200 rounded-lg p-1.5 bg-slate-50 flex items-center justify-between animate-fade-in">
+                    <div id="image-preview-container" class="hidden mt-2 border border-slate-200 rounded-lg p-1.5 bg-slate-50 flex items-center justify-between">
                         <div class="flex items-center space-x-2">
                             <img id="image-preview" src="" alt="Preview" class="w-6 h-6 object-cover rounded border border-slate-300">
                             <span id="image-name" class="text-[10px] text-slate-500 truncate max-w-[140px]">Imagen.jpg</span>
                         </div>
-                        <button onclick="removeImage()" class="text-red-500 hover:text-red-700 p-1 text-xs font-bold transition-colors">✕</button>
+                        <button onclick="removeImage()" class="text-red-500 hover:text-red-700 p-1 text-xs font-bold">✕</button>
                     </div>
                 </div>
 
-                <button onclick="compileExecutiveDocument()" class="w-full bg-[#1e293b] hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-lg shadow-sm transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 mt-2">
-                    <span>Compilar Contenido en Hoja</span>
+                <button onclick="compileExecutiveDocument()" class="w-full bg-[#1e293b] hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-lg shadow-xs transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                    <span>Compilar Contenido</span>
                 </button>
             </div>
         </section>
@@ -137,30 +160,30 @@
         <section id="module-ai" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200/80 flex flex-col space-y-4 hidden md:flex">
             <div class="border-b border-slate-100 pb-2">
                 <h2 class="text-xs font-bold text-[#1e293b] uppercase tracking-wider flex items-center gap-2">
-                    <span class="bg-[#1e293b] text-white px-2 py-0.5 rounded">02</span> Inteligencia de Negocios AI-ON
+                    <span class="bg-[#1e293b] text-white px-2 py-0.5 rounded">02</span> Núcleo Cognitivo IA
                 </h2>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
-                <button onclick="executeProfileMentorship()" id="btn-mentor-cv" class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-2 px-2 rounded-lg text-[11px] transition-all flex items-center justify-center text-center shadow-xs">
-                    🚀 Mentor de Perfil (CV)
+                <button onclick="executeProfileMentorship()" id="btn-mentor-cv" class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-2 px-2 rounded-lg text-[11px] transition-all flex items-center justify-center text-center">
+                    🚀 Mentor de Perfil
                 </button>
-                <button onclick="executeBusinessDiagnosis()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-2 px-2 rounded-lg text-[11px] transition-all flex items-center justify-center text-center shadow-xs">
-                    💼 Consultoría Comercial
+                <button onclick="executeBusinessDiagnosis()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-2 px-2 rounded-lg text-[11px] transition-all flex items-center justify-center text-center">
+                    💼 Consultoría y Diagnóstico
                 </button>
             </div>
 
             <div class="flex-1 flex flex-col border border-slate-200/80 rounded-xl bg-slate-50 overflow-hidden">
-                <div id="chat-logs" class="flex-1 p-3 overflow-y-auto space-y-3 text-xs chat-scroll max-h-[340px]">
+                <div id="chat-logs" class="flex-1 p-3 overflow-y-auto space-y-3 text-xs chat-scroll max-h-[350px]">
                     <div class="flex items-start gap-2 max-w-[90%]">
                         <div class="bg-[#1e293b] text-white rounded-xl p-3 rounded-tl-none shadow-xs leading-relaxed">
-                            Analizador de Marca Personal activo. Presione **Mentor de Perfil** para procesar los campos estructurados o realice preguntas libres. El texto generado se mostrará aquí para su copia directa.
+                            Sistema IA AI-ON en línea. Modos adaptativos listos. El texto generado aquí puede ser copiado directamente por el operador corporativo.
                         </div>
                     </div>
                 </div>
 
                 <div class="p-2 bg-white border-t border-slate-200 flex gap-2 items-center">
-                    <input type="text" id="chat-input" onkeydown="if(event.key === 'Enter') queryLocalChatAI()" class="flex-1 p-2 border border-slate-300 rounded-lg text-xs outline-none focus:ring-1 focus:ring-slate-700 bg-slate-50 focus:bg-white" placeholder="Consulte o solicite reescrituras aquí...">
+                    <input type="text" id="chat-input" onkeydown="if(event.key === 'Enter') queryLocalChatAI()" class="flex-1 p-2 border border-slate-300 rounded-lg text-xs outline-none focus:ring-1 focus:ring-slate-700 bg-slate-50" placeholder="Escriba una instrucción a la IA...">
                     <button onclick="queryLocalChatAI()" class="bg-[#1e293b] hover:bg-slate-800 text-white p-2 rounded-lg transition-colors flex-shrink-0">
                         <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                     </button>
@@ -171,7 +194,7 @@
         <section id="module-preview" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200/80 flex flex-col space-y-4 hidden md:flex">
             <div class="border-b border-slate-100 pb-2 flex justify-between items-center">
                 <h2 class="text-xs font-bold text-[#1e293b] uppercase tracking-wider flex items-center gap-2">
-                    <span class="bg-slate-100 px-2 py-0.5 rounded text-[#1e293b]">03</span> Render Ejecutivo A4
+                    <span class="bg-slate-100 px-2 py-0.5 rounded text-[#1e293b]">03</span> Renderizado de Hoja
                 </h2>
                 
                 <button onclick="executeTextToSpeech()" id="btn-voice" class="bg-slate-50 hover:bg-slate-100 text-slate-700 py-1 px-2.5 rounded-lg border border-slate-300 flex items-center gap-1.5 text-xs font-bold transition-all">
@@ -180,25 +203,25 @@
                 </button>
             </div>
 
-            <div class="flex-1 flex items-center justify-center bg-slate-50 p-2 rounded-xl overflow-hidden min-h-[320px] border border-slate-100">
-                <div id="a4-sheet" class="preview-canvas-container w-full max-w-[290px] bg-white p-4 flex flex-col justify-between overflow-hidden relative text-[8px] text-slate-800 leading-relaxed font-mono">
+            <div class="flex-1 flex items-center justify-center bg-slate-50 p-2 rounded-xl overflow-hidden min-h-[340px] border border-slate-100">
+                <div id="a4-sheet" class="preview-canvas-container w-full max-w-[280px] bg-white p-4 flex flex-col justify-between overflow-hidden relative text-[7px] text-slate-800 leading-relaxed">
                     
-                    <div id="sheet-content-area" class="space-y-3">
-                        <div class="border-b border-slate-900 pb-2 flex justify-between items-start">
+                    <div class="space-y-2.5">
+                        <div class="border-b border-slate-900 pb-1.5 flex justify-between items-start">
                             <div>
-                                <h3 id="sheet-header-title" class="font-bold text-[#1e293b] uppercase text-[9px] tracking-wide">CURRÍCULUM VITAE EJECUTIVO</h3>
-                                <p class="text-[6px] text-slate-400 uppercase tracking-widest mt-0.5">AI-ON AGENCIA & MENTORIA</p>
+                                <h3 id="sheet-header-title" class="font-bold text-[#1e293b] uppercase text-[8px] tracking-wide">CURRÍCULUM VITAE EJECUTIVO</h3>
+                                <p id="sheet-sub-title" class="text-[5px] text-slate-400 uppercase tracking-widest mt-0.5">AI-ON CORPORATE MANAGEMENT</p>
                             </div>
-                            <div id="sheet-profile-pic" class="w-8 h-8 border border-slate-200 bg-slate-50 hidden bg-cover bg-center rounded-sm flex-shrink-0"></div>
+                            <div id="sheet-profile-pic" class="w-7 h-7 border border-slate-200 bg-slate-50 hidden bg-cover bg-center rounded-xs flex-shrink-0"></div>
                         </div>
                         
                         <div id="sheet-dynamic-body" class="whitespace-pre-line break-words text-slate-700 font-sans">
-                            Cargue la información y presione 'Compilar Contenido en Hoja' para renderizar la maqueta vectorial A4 libre de elementos redundantes...
+                            Por favor ingrese los datos correspondientes en el formulario de la columna izquierda y presione 'Compilar Contenido'.
                         </div>
                     </div>
 
-                    <div class="border-t border-slate-200 pt-1 flex justify-between items-center text-[6px] text-slate-400 font-sans">
-                        <span>Documento Verificado por IA-ON Suite</span>
+                    <div class="border-t border-slate-200 pt-1 flex justify-between items-center text-[5px] text-slate-400 font-sans">
+                        <span>Sistema de Gestión Segura de Archivos</span>
                         <span class="font-bold">Página 1 / 1</span>
                     </div>
                 </div>
@@ -209,10 +232,53 @@
                 <span>Descargar PDF Definitivo</span>
             </button>
         </section>
+
+        <section id="module-reports" class="bg-white rounded-xl p-5 shadow-sm border border-slate-200/80 flex flex-col space-y-4 hidden">
+            <div class="border-b border-slate-100 pb-2">
+                <h2 class="text-xs font-bold text-[#1e293b] uppercase tracking-wider flex items-center gap-2">
+                    <span class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">04</span> Analíticas del Informe
+                </h2>
+            </div>
+
+            <div class="flex-1 flex flex-col space-y-4 justify-between">
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-center">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Eficiencia</p>
+                        <p class="text-xl font-black text-[#1e293b] mt-0.5">+14.0%</p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-center">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Fricción B2B</p>
+                        <p class="text-xl font-black text-indigo-900 mt-0.5">-8.3%</p>
+                    </div>
+                </div>
+
+                <div class="flex-1 bg-slate-50 rounded-xl p-3 border border-slate-100 flex flex-col justify-center items-center min-h-[180px]">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-4">Rendimiento Operativo</p>
+                    
+                    <svg class="w-full max-w-[200px] h-32" viewBox="0 0 160 120">
+                        <rect x="20" y="30" width="20" height="70" fill="#1e293b" rx="2" />
+                        <rect x="55" y="10" width="20" height="90" fill="#4338ca" rx="2" />
+                        <rect x="90" y="45" width="20" height="55" fill="#64748b" rx="2" />
+                        <rect x="125" y="20" width="20" height="80" fill="#94a3b8" rx="2" />
+                        <line x1="10" y1="100" x2="150" y2="100" stroke="#cbd5e1" stroke-width="2" />
+                        
+                        <text x="25" y="112" font-size="7" font-family="sans-serif" fill="#94a3b8">Q1</text>
+                        <text x="60" y="112" font-size="7" font-family="sans-serif" fill="#4338ca" font-weight="bold">Q2</text>
+                        <text x="95" y="112" font-size="7" font-family="sans-serif" fill="#94a3b8">Q3</text>
+                        <text x="130" y="112" font-size="7" font-family="sans-serif" fill="#94a3b8">Q4</text>
+                    </svg>
+                </div>
+
+                <div class="bg-indigo-950 text-indigo-200 p-3 rounded-lg text-[11px] leading-relaxed">
+                    💡 **Métricas consolidadas:** El vector Q2 refleja un alza en el margen neto producto de la optimización del software en la agencia.
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-white border-t border-slate-200/80 py-2.5 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 text-slate-400 font-medium">
+        <div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 text-slate-400 font-medium">
             <span class="text-[10px]">&copy; 2026 AI-ON Corporate Suite. Entorno local en Sandbox de Alta Confidencialidad.</span>
             <span class="text-[9px] tracking-wider text-slate-500 italic uppercase">Desarrollado por Guillermo J.P Viera</span>
         </div>
@@ -226,19 +292,22 @@
         let generatedPdfBlob = null;
         let activeDocumentType = "cv";
 
-        // Alternador de Pestañas en Entornos Móviles
+        // Alternador de Pestañas Móviles
         function switchTab(tab) {
-            const keys = ['generator', 'ai', 'preview'];
+            const keys = ['generator', 'ai', 'preview', 'reports'];
             keys.forEach(key => {
                 const el = document.getElementById(`module-${key}`);
                 const tabEl = document.getElementById(`tab-${key}`);
+                if (!el) return;
+                
                 if (key === tab) {
                     el.classList.remove('hidden');
-                    if (key === 'preview' || key === 'ai') el.classList.add('md:flex');
+                    if (['preview', 'ai', 'reports'].includes(key)) el.classList.add('md:flex');
                 } else {
                     el.classList.add('hidden');
-                    if (key === 'preview' || key === 'ai') el.classList.remove('md:flex');
+                    if (['preview', 'ai', 'reports'].includes(key)) el.classList.remove('md:flex');
                 }
+                
                 if (tabEl) {
                     if (key === tab) tabEl.classList.add('active-tab');
                     else tabEl.classList.remove('active-tab');
@@ -246,41 +315,62 @@
             });
         }
 
-        // Cambio de Modo Estricto de Documentación (Lógica sin gráficos)
+        // CONTROL ADAPTATIVO DEL LAYOUT DE HASTA 4 COLUMNAS
         function toggleDocumentFormMode() {
             activeDocumentType = document.getElementById('doc-type-selector').value;
             const formGeneral = document.getElementById('form-general-wrapper');
             const formCV = document.getElementById('form-cv-wrapper');
             const sheetTitle = document.getElementById('sheet-header-title');
+            const sheetSub = document.getElementById('sheet-sub-title');
+            
+            const column4 = document.getElementById('module-reports');
+            const mobileTab4 = document.getElementById('tab-reports');
+            const gridLayout = document.getElementById('main-grid-layout');
 
             if (activeDocumentType === "cv") {
                 formGeneral.classList.add('hidden');
                 formCV.classList.remove('hidden');
                 sheetTitle.textContent = "CURRÍCULUM VITAE EJECUTIVO";
+                sheetSub.textContent = "AI-ON CORPORATE MANAGEMENT";
+                
+                // Ocultar 4ta columna por completo y reajustar layout de PC a 3 columnas
+                column4.classList.add('hidden');
+                column4.classList.remove('md:flex');
+                mobileTab4.classList.add('hidden');
+                gridLayout.className = "flex-1 max-w-[1600px] w-full mx-auto p-4 lg:p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 transition-all duration-300";
             } else {
                 formCV.classList.add('hidden');
                 formGeneral.classList.remove('hidden');
-                sheetTitle.textContent = "DOCUMENTO ESTRATÉGICO DE AGENCIA";
+                sheetTitle.textContent = "INFORME ESTRATÉGICO DE AGENCIA";
+                sheetSub.textContent = "BUSINESS METRICS & PROCESS AUDIT";
+                
+                // Mostrar 4ta columna y expandir la grilla a 4 columnas en pantallas XL
+                column4.classList.remove('hidden');
+                column4.classList.add('md:flex');
+                mobileTab4.classList.remove('hidden');
+                gridLayout.className = "flex-1 max-w-[1600px] w-full mx-auto p-4 lg:p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 transition-all duration-300";
             }
-            showToast(`Formato cambiado a: ${activeDocumentType.toUpperCase()}`, "info");
+            showToast(`Layout adaptado: Modo ${activeDocumentType.toUpperCase()}`, "info");
         }
 
-        // Extracción Segura de Parámetros del Formulario
         function getFormValues() {
             return {
                 name: document.getElementById('cv-name').value.trim(),
                 phone: document.getElementById('cv-phone').value.trim(),
                 email: document.getElementById('cv-email').value.trim(),
                 address: document.getElementById('cv-address').value.trim(),
-                linkedin: document.getElementById('cv-linkedin').value.trim(),
+                zip: document.getElementById('cv-zip').value.trim(),
+                birth: document.getElementById('cv-birth').value,
+                nationality: document.getElementById('cv-nationality').value.trim(),
+                summary: document.getElementById('cv-summary').value.trim(),
                 experience: document.getElementById('cv-experience').value.trim(),
                 education: document.getElementById('cv-education').value.trim(),
                 skills: document.getElementById('cv-skills').value.trim(),
+                docTitle: document.getElementById('doc-title').value.trim(),
                 generalText: document.getElementById('doc-text').value.trim()
             };
         }
 
-        // --- SISTEMA COGNITIVO CENTRAL DE ASISTENCIA IA ---
         function addLogMessage(sender, htmlContent) {
             const chatLogs = document.getElementById('chat-logs');
             const wrapper = document.createElement('div');
@@ -295,45 +385,54 @@
             chatLogs.scrollTop = chatLogs.scrollHeight;
         }
 
+        // BOTÓN 1: MENTOR DE PERFIL
         function executeProfileMentorship() {
             const vals = getFormValues();
             if (activeDocumentType !== "cv") {
-                addLogMessage('ai', "⚠️ **AI-ON Insight:** Active el modo 'Currículum Vitae' en la cabecera superior para procesar la optimización de marca personal ejecutiva.");
+                addLogMessage('ai', "⚠️ **AI-ON Insight:** Conmute la aplicación al formato 'Currículum Vitae' para procesar de forma correcta la optimización del extracto ejecutivo.");
                 return;
             }
-            if (!vals.name || !vals.skills || !vals.experience) {
-                showToast("Por favor complete los campos obligatorios del perfil", "error");
+            if (!vals.summary) {
+                showToast("Complete el casillero de Resumen Profesional", "error");
                 return;
             }
 
-            showToast("Redactando perfil ejecutivo...", "info");
+            showToast("Redactando perfil de alta gama...", "info");
             setTimeout(() => {
-                const optimizedProfile = `✨ **PERFIL EJECUTIVO RECOMENDADO POR AI-ON:**\n\n` +
-                    `"Líder estratégico con competencias avanzadas en **${vals.skills.split(',').slice(0,3).join(', ')}**. ` +
-                    `Con trayectoria corporativa enfocada en la optimización continua y el despliegue de valor para stakeholders, destacado por: *${vals.experience.substring(0,110)}...* ` +
-                    `Experto en articular metodologías complejas y soluciones técnicas con enfoque en rentabilidad y escalabilidad corporativa."`;
-                addLogMessage('ai', optimizedProfile);
-            }, 350);
+                const optimized = `✨ **EXTRACTO EJECUTIVO RECOMENDADO (Normas ATS):**\n\n` +
+                    `"Líder de perfil global de nacionalidad ${vals.nationality}. Comprometido con la optimización de procesos y el rendimiento del negocio. ` +
+                    `Con un sólido resumen enfocado en: *${vals.summary}* y competencias validadas en gestión de equipos y flujos de trabajo eficientes."`;
+                addLogMessage('ai', optimized);
+            }, 300);
         }
 
+        // BOTÓN 2: CONSULTORÍA Y DIAGNÓSTICO INTELIGENTE (ADAPTADO POR COLUMNA 1)
         function executeBusinessDiagnosis() {
             const vals = getFormValues();
+            
             if (activeDocumentType === "cv") {
-                addLogMessage('ai', "💼 **AI-ON Business Audit:** El modo actual está seteado en Currículum. Para realizar auditorías comerciales complejas de agencias, conmute a 'Documento General' e ingrese los flujos operativos.");
-                return;
+                // Auditoría de Perfil Profesional para CV
+                showToast("Iniciando auditoría de Perfil...", "info");
+                setTimeout(() => {
+                    const audit = `🔍 **AUDITORÍA DE PERFIL PROFESIONAL (AI-ON):**\n\n` +
+                        `• **Estructura:** Los casilleros de localización (CP: ${vals.zip || 'No provisto'}) y datos demográficos cumplen con estándares europeos.\n` +
+                        `• **Evaluación de Habilidades:** Las competencias estratégicas listadas (*${vals.skills.substring(0, 50)}...*) se alinean correctamente con la trayectoria laboral expuesta. Perfil apto para postulación ejecutiva.`;
+                    addLogMessage('ai', audit);
+                }, 350);
+            } else {
+                // Diagnóstico Comercial/Logístico para Informe
+                if (!vals.generalText) {
+                    showToast("Por favor cargue las métricas operativas del informe", "error");
+                    return;
+                }
+                showToast("Procesando diagnóstico logístico...", "info");
+                setTimeout(() => {
+                    const diagnosis = `📈 **DIAGNOSTICO LOGÍSTICO Y COMERCIAL AI-ON:**\n\n` +
+                        `• **Fase Analítica:** Se valida el incremento de la eficiencia reportada. El indicador del gráfico adjunto denota un progreso sustentable en el trimestre Q2.\n` +
+                        `• **Mitigación de Riesgos:** La reducción del 8% de cuellos de botella puede potenciarse si se estandarizan manuales de procedimiento en toda la cadena de valor corporativa.`;
+                    addLogMessage('ai', diagnosis);
+                }, 400);
             }
-            if (!vals.generalText) {
-                showToast("Ingrese el cuerpo de la propuesta para auditar", "error");
-                return;
-            }
-
-            showToast("Analizando propuesta corporativa...", "info");
-            setTimeout(() => {
-                const diagnosis = `📈 **DIAGNÓSTICO ESTRATÉGICO DE AGENCIA (AI-ON):**\n\n` +
-                    `• **Análisis Operativo:** La narrativa de procesos cuenta con una declaración de objetivos clara. Se sugiere estructurar los entregables mediante fases basadas en hitos medibles.\n\n` +
-                    `• **Estrategia Comercial:** Se detecta oportunidad para empaquetar estos servicios bajo un modelo de 'Retainer mensual' o consultoría recurrente, incrementando el LTV de la cuenta un 20%.`;
-                addLogMessage('ai', diagnosis);
-            }, 400);
         }
 
         function queryLocalChatAI() {
@@ -344,44 +443,28 @@
             addLogMessage('user', text);
             input.value = '';
 
-            const vals = getFormValues();
-            const queryClean = text.toLowerCase();
-
             setTimeout(() => {
-                let reply = "";
-                if (queryClean.includes('cv') || queryClean.includes('perfil') || queryClean.includes('correo')) {
-                    reply = `**Asesor de Marca Personal:** Evaluando los datos provistos de *${vals.name || 'Usuario'}*, se aconseja listar las experiencias en orden cronológico inverso en el editor. Su información de contacto (${vals.email || 'no provisto'}) cumple con las normas ATS de lectura limpia.`;
-                } else {
-                    reply = `**Consultor AI-ON:** Parámetros cargados en memoria volátil de forma privada. El previsualizador de la derecha compilará un documento nítido respetando márgenes ejecutivos milimétricos al pulsar 'Compilar Contenido'.`;
-                }
-                addLogMessage('ai', reply);
+                addLogMessage('ai', `**Consultor AI-ON:** Procesamiento local completado bajo arquitectura privada. Los flujos de información se mantienen en sandbox seguro.`);
             }, 250);
         }
 
-        // --- SISTEMA LECTOR NATIVO (TEXT-TO-SPEECH) ---
         function executeTextToSpeech() {
-            if (!('speechSynthesis' in window)) { showToast("Voz no soportada en este entorno", "error"); return; }
+            if (!('speechSynthesis' in window)) { showToast("Voz no soportada", "error"); return; }
             
             if (window.speechSynthesis.speaking) {
                 window.speechSynthesis.cancel();
                 document.getElementById('voice-icon').className = "w-2 h-2 rounded-full bg-emerald-500 inline-block";
                 document.getElementById('voice-text').textContent = "Oír PDF";
-                showToast("Lectura pausada", "info");
                 return;
             }
 
             const vals = getFormValues();
-            let speechContent = "";
-
-            if (activeDocumentType === "cv") {
-                speechContent = `Currículum Vitae de ${vals.name}. Teléfono: ${vals.phone}. Correo: ${vals.email}. Experiencia profesional: ${vals.experience}. Educación: ${vals.education}. Habilidades clave: ${vals.skills}`;
-            } else {
-                speechContent = vals.generalText || "Documento estratégico general sin contenido.";
-            }
+            let speechContent = activeDocumentType === "cv" 
+                ? `Currículum Vitae de ${vals.name}. Resumen profesional: ${vals.summary}. Experiencia laboral: ${vals.experience}`
+                : `Informe corporativo titulado ${vals.docTitle}. Contenido: ${vals.generalText}`;
 
             const utterance = new SpeechSynthesisUtterance(speechContent);
             utterance.lang = 'es-ES';
-            
             utterance.onend = () => {
                 document.getElementById('voice-icon').className = "w-2 h-2 rounded-full bg-emerald-500 inline-block";
                 document.getElementById('voice-text').textContent = "Oír PDF";
@@ -389,136 +472,121 @@
 
             document.getElementById('voice-icon').className = "w-2 h-2 rounded-full bg-red-500 inline-block animate-ping";
             document.getElementById('voice-text').textContent = "Parar";
-            
             window.speechSynthesis.speak(utterance);
-            showToast("Iniciando dictado de documento...", "success");
         }
 
-        // --- COMPILACIÓN VECTORIAL Y RENDER DE PREVISUALIZACIÓN ---
+        // COMPILACIÓN Y PREVISUALIZACIÓN PREMIUM (NUNCA INCLUYE GRÁFICOS EN ESTA ETAPA EN HOJA)
         function compileExecutiveDocument() {
             const vals = getFormValues();
             const containerBody = document.getElementById('sheet-dynamic-body');
             
-            // Actualizar la interfaz física simulada de inmediato (A4 View)
             if (activeDocumentType === "cv") {
-                containerBody.innerHTML = `<span class="font-bold text-slate-900 block text-[9px] mb-1">${vals.name}</span>` +
-                    `<span class="text-slate-500 block text-[7px] mb-2">${vals.phone} | ${vals.email} | ${vals.address}\n${vals.linkedin}</span>` +
-                    `<span class="font-bold text-slate-900 block text-[7px] border-b border-slate-200 mt-2 uppercase">Experiencia Laboral</span>` +
-                    `<p class="text-slate-600 my-1">${vals.experience || 'Sin experiencia cargada.'}</p>` +
-                    `<span class="font-bold text-slate-900 block text-[7px] border-b border-slate-200 mt-2 uppercase">Educación</span>` +
-                    `<p class="text-slate-600 my-1">${vals.education || 'Sin formación cargada.'}</p>` +
-                    `<span class="font-bold text-slate-900 block text-[7px] border-b border-slate-200 mt-2 uppercase">Habilidades</span>` +
-                    `<p class="text-slate-600 my-1">${vals.skills || 'Sin habilidades.'}</p>`;
+                containerBody.innerHTML = `<span class="font-bold text-slate-900 block text-[9px] mb-0.5">${vals.name}</span>` +
+                    `<span class="text-slate-400 block text-[6px] mb-1.5">${vals.phone} | ${vals.email} | ${vals.address} (CP: ${vals.zip})<br>Nacimiento: ${vals.birth} | Nacionalidad: ${vals.nationality}</span>` +
+                    `<span class="font-bold text-slate-900 block text-[6.5px] bg-slate-100 px-1 py-0.5 rounded uppercase">Resumen Profesional</span>` +
+                    `<p class="text-slate-600 my-1 italic">${vals.summary || 'Sin extracto cargado.'}</p>` +
+                    `<span class="font-bold text-slate-900 block text-[6.5px] border-b border-slate-200 mt-2 uppercase">Trayectoria Laboral</span>` +
+                    `<p class="text-slate-600 my-1">${vals.experience || 'Sin trayectoria.'}</p>` +
+                    `<span class="font-bold text-slate-900 block text-[6.5px] border-b border-slate-200 mt-2 uppercase">Educación e Habilidades</span>` +
+                    `<p class="text-slate-600 mt-1"><b>Formación:</b> ${vals.education}</p>` +
+                    `<p class="text-slate-600"><b>Competencias:</b> ${vals.skills}</p>`;
             } else {
-                containerBody.textContent = vals.generalText || "Cargue texto para procesar la propuesta.";
+                containerBody.innerHTML = `<span class="font-bold text-slate-900 block text-[9px] mb-1.5 uppercase">${vals.docTitle || 'Informe sin título'}</span>` +
+                    `<p class="text-slate-600 leading-relaxed">${vals.generalText || 'Ingrese texto para el informe.'}</p>`;
             }
 
-            showToast("Compilando estructura PDF...", "info");
+            showToast("Compilando arquitectura del archivo...", "info");
 
-            // Generación asíncrona del Blob de impresión de alto impacto
             setTimeout(() => {
                 try {
                     const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
                     
-                    // Diseño premium: Encabezado corporativo minimalista de alta gama
+                    // Banner corporativo superior
                     doc.setFillColor(30, 41, 59);
-                    doc.rect(0, 0, 210, 16, 'F');
-                    
+                    doc.rect(0, 0, 210, 15, 'F');
                     doc.setTextColor(248, 250, 252);
                     doc.setFont("helvetica", "bold");
-                    doc.setFontSize(11);
-                    doc.text("AI-ON AGENCIA Y MENTORIA | EXECUTED IN LOCAL CLIENT", 15, 10.5);
+                    doc.setFontSize(10);
+                    doc.text("AI-ON CORPORATE SUITE | EXPORTACIÓN PREMIUM", 15, 9.5);
 
                     doc.setTextColor(30, 41, 59);
-                    let currentY = 28;
+                    let currentY = 26;
 
                     if (activeDocumentType === "cv") {
-                        // Estructura limpia y enfocada al 100% en texto de alta gama
                         doc.setFont("helvetica", "bold");
-                        doc.setFontSize(15);
+                        doc.setFontSize(14);
                         doc.text(vals.name.toUpperCase(), 15, currentY);
                         
                         doc.setFont("helvetica", "normal");
-                        doc.setFontSize(9);
+                        doc.setFontSize(8.5);
                         doc.setTextColor(100, 116, 139);
-                        doc.text(`${vals.phone}  |  ${vals.email}  |  ${vals.address}`, 15, currentY + 5.5);
-                        doc.text(`${vals.linkedin}`, 15, currentY + 10);
+                        doc.text(`${vals.phone} | ${vals.email} | ${vals.address} (CP: ${vals.zip})`, 15, currentY + 5);
+                        doc.text(`F. Nacimiento: ${vals.birth} | Nacionalidad: ${vals.nationality}`, 15, currentY + 9);
                         
                         doc.setDrawColor(226, 232, 240);
-                        doc.setLineWidth(0.4);
-                        doc.line(15, currentY + 13, 195, currentY + 13);
+                        doc.line(15, currentY + 12, 195, currentY + 12);
                         
-                        currentY += 21;
+                        currentY += 19;
                         doc.setTextColor(30, 41, 59);
                         doc.setFont("helvetica", "bold");
-                        doc.setFontSize(11);
-                        doc.text("TRAYECTORIA Y EXPERIENCIA PROFESIONAL", 15, currentY);
-                        
-                        doc.setFont("helvetica", "normal");
-                        doc.setFontSize(9.5);
-                        doc.setTextColor(51, 65, 85);
-                        let expSplit = doc.splitTextToSize(vals.experience || "No detallada.", 180);
-                        doc.text(expSplit, 15, currentY + 5.5);
-                        
-                        currentY += 12 + (expSplit.length * 4.5);
-                        doc.setFont("helvetica", "bold");
-                        doc.setFontSize(11);
-                        doc.setTextColor(30, 41, 59);
-                        doc.text("FORMACIÓN ACADÉMICA Y CERTIFICACIONES", 15, currentY);
-                        
-                        doc.setFont("helvetica", "normal");
-                        doc.setFontSize(9.5);
-                        doc.setTextColor(51, 65, 85);
-                        let eduSplit = doc.splitTextToSize(vals.education || "No detallada.", 180);
-                        doc.text(eduSplit, 15, currentY + 5.5);
+                        doc.setFontSize(10.5);
+                        doc.text("PERFIL LABORAL / RESUMEN PROFESIONAL", 15, currentY);
+                        doc.setFont("helvetica", "oblique");
+                        doc.setFontSize(9);
+                        doc.setTextColor(71, 85, 105);
+                        let sumSplit = doc.splitTextToSize(vals.summary || "No especificado.", 180);
+                        doc.text(sumSplit, 15, currentY + 5);
 
-                        currentY += 12 + (eduSplit.length * 4.5);
-                        doc.setFont("helvetica", "bold");
-                        doc.setFontSize(11);
+                        currentY += 10 + (sumSplit.length * 4.5);
                         doc.setTextColor(30, 41, 59);
-                        doc.text("COMPETENCIAS Y SKILLS CENTRALES", 15, currentY);
-                        
+                        doc.setFont("helvetica", "bold");
+                        doc.setFontSize(10.5);
+                        doc.text("TRAYECTORIA Y EXPERIENCIA LABORAL", 15, currentY);
                         doc.setFont("helvetica", "normal");
-                        doc.setFontSize(9.5);
+                        doc.setFontSize(9);
                         doc.setTextColor(51, 65, 85);
-                        doc.text(vals.skills || "No especificadas.", 15, currentY + 5.5);
+                        let expSplit = doc.splitTextToSize(vals.experience || "No especificada.", 180);
+                        doc.text(expSplit, 15, currentY + 5);
+
+                        currentY += 10 + (expSplit.length * 4.5);
+                        doc.setFont("helvetica", "bold");
+                        doc.text("FORMACIÓN ACADÉMICA Y COMPETENCIAS", 15, currentY);
+                        doc.setFont("helvetica", "normal");
+                        let eduSplit = doc.splitTextToSize(`Estudios: ${vals.education}\nHabilidades clave: ${vals.skills}`, 180);
+                        doc.text(eduSplit, 15, currentY + 5);
                     } else {
-                        // Formato Documento General
                         doc.setFont("helvetica", "bold");
                         doc.setFontSize(12);
-                        doc.text("PROPUESTA ESTRATÉGICA Y AUDITORÍA DE PROCESOS", 15, currentY);
+                        doc.text(vals.docTitle.toUpperCase(), 15, currentY);
                         
                         doc.setFont("helvetica", "normal");
-                        doc.setFontSize(10);
+                        doc.setFontSize(9.5);
                         doc.setTextColor(51, 65, 85);
                         let textSplit = doc.splitTextToSize(vals.generalText || "Sin contenido.", 180);
                         doc.text(textSplit, 15, currentY + 7);
                     }
 
-                    // Insertar foto/logo solo si ha sido cargado localmente por el usuario
                     if (base64ImageString) {
-                        if (currentY > 230) { doc.addPage(); currentY = 25; }
-                        doc.addImage(base64ImageString, 'JPEG', 15, 240, 32, 32);
+                        if (currentY > 240) { doc.addPage(); currentY = 20; }
+                        doc.addImage(base64ImageString, 'JPEG', 15, 245, 28, 28);
                     }
 
-                    // Cierre simétrico de pie de página
                     doc.setFont("helvetica", "italic");
                     doc.setFontSize(7);
                     doc.setTextColor(148, 163, 184);
-                    doc.text("Cifrado en cliente. Desarrollado por Guillermo J.P Viera", 15, 289);
+                    doc.text("Desarrollado por Guillermo J.P Viera", 15, 289);
 
                     generatedPdfBlob = doc.output('blob');
 
-                    // Activación del botón de descarga tras compilación exitosa
                     const downBtn = document.getElementById('btn-download');
                     downBtn.removeAttribute('disabled');
                     downBtn.classList.remove('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
-                    downBtn.classList.add('bg-[#1e293b]', 'hover:bg-slate-800', 'text-white', 'cursor-pointer');
+                    downBtn.classList.add('bg-[#1e293b]', 'hover:bg-slate-800', 'text-white');
 
-                    showToast("¡Matriz compilada con éxito!", "success");
+                    showToast("¡Documento compilado!", "success");
                 } catch (err) {
                     console.error(err);
-                    showToast("Excepción en compilación de fuentes", "error");
+                    showToast("Error de compilación", "error");
                 }
             }, 200);
         }
@@ -528,39 +596,32 @@
             const targetUrl = URL.createObjectURL(generatedPdfBlob);
             const anchor = document.createElement('a');
             anchor.href = targetUrl;
-            anchor.download = activeDocumentType === "cv" ? "CV_Impacto_Premium.pdf" : "Propuesta_Estrategica_AION.pdf";
+            anchor.download = activeDocumentType === "cv" ? "CV_Elite_Structure.pdf" : "Informe_Corporativo_AION.pdf";
             document.body.appendChild(anchor);
             anchor.click();
             document.body.removeChild(anchor);
-            showToast("Descarga completada", "success");
+            showToast("Archivo guardado", "success");
         }
 
-        // --- DRAG AND DROP & CARGA DE ARCHIVOS ---
+        // CONTROL DE ARCHIVO ADJUNTO
         (() => {
-            const dz = document.getElementById('drop-zone');
             const input = document.getElementById('image-input');
-            
-            input.addEventListener('change', (e) => processUploadedFile(e.target.files[0]));
-            ['dragenter', 'dragover'].forEach(n => dz.addEventListener(n, (e) => { e.preventDefault(); dz.classList.add('bg-slate-200'); }));
-            ['dragleave', 'drop'].forEach(n => dz.addEventListener(n, (e) => { e.preventDefault(); dz.classList.remove('bg-slate-200'); }));
-            dz.addEventListener('drop', (e) => { e.preventDefault(); const f = e.dataTransfer.files[0]; if(f) processUploadedFile(f); });
+            input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    base64ImageString = evt.target.result;
+                    document.getElementById('image-preview').src = base64ImageString;
+                    document.getElementById('image-preview-container').classList.remove('hidden');
+                    
+                    const miniPic = document.getElementById('sheet-profile-pic');
+                    miniPic.style.backgroundImage = `url('${base64ImageString}')`;
+                    miniPic.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            });
         })();
-
-        function processUploadedFile(file) {
-            if (!file || !file.type.match('image.*')) { showToast("Formato no soportado", "error"); return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                base64ImageString = e.target.result;
-                document.getElementById('image-preview').src = base64ImageString;
-                document.getElementById('image-preview-container').classList.remove('hidden');
-                
-                const miniPic = document.getElementById('sheet-profile-pic');
-                miniPic.style.backgroundImage = `url('${base64ImageString}')`;
-                miniPic.classList.remove('hidden');
-                showToast("Recurso gráfico enlazado", "success");
-            };
-            reader.readAsDataURL(file);
-        }
 
         function removeImage() {
             base64ImageString = null;
@@ -575,11 +636,10 @@
             let bg = "bg-slate-800";
             if (type === "success") bg = "bg-slate-900 border border-slate-700";
             if (type === "error") bg = "bg-red-700";
-            elem.className = `${bg} text-white px-3 py-2 rounded-lg shadow-md text-xs font-semibold transition-all transform translate-y-2 opacity-0 pointer-events-auto`;
+            elem.className = `${bg} text-white px-3 py-1.5 rounded-lg shadow-md text-xs font-semibold transition-all duration-200 pointer-events-auto`;
             elem.textContent = msg;
             container.appendChild(elem);
-            setTimeout(() => elem.classList.remove('translate-y-2', 'opacity-0'), 10);
-            setTimeout(() => { elem.classList.add('opacity-0', 'translate-y-2'); setTimeout(() => elem.remove(), 200); }, 2500);
+            setTimeout(() => { elem.remove(); }, 2500);
         }
     </script>
 </body>
